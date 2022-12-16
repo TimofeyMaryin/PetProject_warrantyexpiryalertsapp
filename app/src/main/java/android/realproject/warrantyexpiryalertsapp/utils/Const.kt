@@ -4,6 +4,9 @@ import android.realproject.warrantyexpiryalertsapp.R
 import android.realproject.warrantyexpiryalertsapp.model.AdditionallyApplicationModel
 
 const val PRODUCT_ITEM_ARGUMENT = "count_item"
+const val INDEX_PRODUCT_NAME = 0
+const val INDEX_PRODUCT_PRICE = 1
+const val INDEX_PRODUCT_GUARANTEE = 2
 
 
 val ADDITIONALLY_APPLICATION_ITEM = listOf(

@@ -37,7 +37,7 @@ val Typography = Typography(
         fontSize = ApplicationUiConst.FontSize.SMALL
     ),
     subtitle2 = TextStyle(
-        fontFamily = ApplicationUiConst.FontFamily.jost
+        fontFamily = ApplicationUiConst.FontFamily.jost,
     ),
     body2 = TextStyle(
         fontFamily = ApplicationUiConst.FontFamily.jost
@@ -47,7 +47,7 @@ val Typography = Typography(
     ),
     caption = TextStyle(
         fontFamily = ApplicationUiConst.FontFamily.jost,
-        fontSize = ApplicationUiConst.FontSize.NORMAL
+        fontSize = ApplicationUiConst.FontSize.LARGE
     ),
     overline = TextStyle(
         fontFamily = ApplicationUiConst.FontFamily.jost

@@ -1,5 +1,6 @@
 package android.realproject.warrantyexpiryalertsapp.data.navigation
 
+import android.realproject.warrantyexpiryalertsapp.data.view_model.CreateUserProductViewModel
 import android.realproject.warrantyexpiryalertsapp.data.view_model.MainViewModel
 import android.realproject.warrantyexpiryalertsapp.ui.elements.animation.TransitionUnderFragment
 import android.realproject.warrantyexpiryalertsapp.ui.fragments.*
@@ -13,7 +14,8 @@ import androidx.navigation.compose.composable
 @Composable
 fun ApplicationNavHost(
     navController: NavHostController,
-    mainViewModel: MainViewModel
+    mainViewModel: MainViewModel,
+    createUserProductViewModel: CreateUserProductViewModel
 ) {
     NavHost(navController = navController, startDestination = Screen.MainScreen.route){
         // Фрагменты не нуждающиеся в дип линках
@@ -30,7 +32,10 @@ fun ApplicationNavHost(
 
         composable(Screen.CreateProductScreen.route) {
             TransitionUnderFragment {
-                CreateProductFragment()
+                CreateProductFragment(
+                    navController = navController,
+                    viewModel = createUserProductViewModel
+                )
             }
         }
 

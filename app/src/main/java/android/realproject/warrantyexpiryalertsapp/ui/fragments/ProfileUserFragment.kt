@@ -82,9 +82,7 @@ fun ProfileUserFragment(
                     },
                 contentScale = ContentScale.Crop
             )
-            Image(
-                bitmap = viewModel.getUser().avatar!!.asImageBitmap(),
-                contentDescription = null,
+            Box(
                 modifier = Modifier
                     .clip(CircleShape)
                     .border(BorderStroke(3.dp, BACKGROUND), CircleShape)
@@ -93,8 +91,17 @@ fun ProfileUserFragment(
                         top.linkTo(cardImage.bottom, margin = (-65).dp)
                         start.linkTo(parent.start)
                         end.linkTo(parent.end)
-                    }
-            )
+                    },
+                contentAlignment = Alignment.Center,
+            ) {
+                Image(
+                    bitmap = viewModel.getUser().avatar!!.asImageBitmap(),
+                    contentDescription = null,
+                    modifier = Modifier.fillMaxSize(),
+                    contentScale = ContentScale.Crop
+                )
+
+            }
         } else {
             Box(
                 modifier = Modifier
@@ -108,19 +115,27 @@ fun ProfileUserFragment(
                     },
             )
 
-            Image(
-                painter = painterResource(id = R.drawable.default_avatar),
-                contentDescription = null,
+            Box(
                 modifier = Modifier
                     .clip(CircleShape)
-                    .border(BorderStroke(3.dp, BACKGROUND), CircleShape)
+                    .background(BACKGROUND)
                     .size(ApplicationUiConst.SizeObject.AVATAR_SIZE)
                     .constrainAs(avatar) {
                         top.linkTo(cardImage.bottom, margin = (-65).dp)
                         start.linkTo(parent.start)
                         end.linkTo(parent.end)
-                    }
-            )
+                    },
+                contentAlignment = Alignment.Center,
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.default_avatar),
+                    contentDescription = null,
+                    modifier = Modifier.fillMaxSize(.93f).clip(CircleShape),
+                    contentScale = ContentScale.Crop
+                )
+
+            }
+
         }
 
 

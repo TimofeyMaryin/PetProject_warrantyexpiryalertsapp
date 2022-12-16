@@ -1,8 +1,11 @@
 package android.realproject.warrantyexpiryalertsapp
 
+import android.os.Build
 import android.os.Bundle
 import android.realproject.warrantyexpiryalertsapp.data.navigation.ApplicationNavHost
+import android.realproject.warrantyexpiryalertsapp.data.view_model.CreateUserProductViewModel
 import android.realproject.warrantyexpiryalertsapp.data.view_model.MainViewModel
+import android.realproject.warrantyexpiryalertsapp.data.view_model.factory.CreateUserProductViewModelFactory
 import android.realproject.warrantyexpiryalertsapp.data.view_model.factory.MainViewModelFactory
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -11,7 +14,11 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import android.realproject.warrantyexpiryalertsapp.ui.theme.WarrantyExpiryAlertsAppTheme
+import android.view.WindowInsets
+import android.view.WindowInsetsController
+import android.view.WindowManager
 import androidx.activity.viewModels
+import androidx.core.view.WindowCompat
 import androidx.navigation.compose.rememberNavController
 
 
@@ -38,13 +45,44 @@ class MainActivity : ComponentActivity() {
                         }
                     )
 
+                    val createUserProductViewModel: CreateUserProductViewModel by viewModels(
+                        factoryProducer = {
+                            CreateUserProductViewModelFactory(
+                                navController = navController,
+                                mainViewModel = mainViewModel
+                            )
+                        }
+                    )
+
                     ApplicationNavHost(
                         navController = navController,
-                        mainViewModel = mainViewModel
+                        mainViewModel = mainViewModel,
+                        createUserProductViewModel = createUserProductViewModel
                     )
 
 
                 }
+            }
+        }
+
+        hideSystemUI()
+    }
+
+    private fun hideSystemUI() {
+
+        //Hides the ugly action bar at the top
+        actionBar?.hide()
+
+        //Hide the status bars
+
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        } else {
+            window.insetsController?.apply {
+                hide(WindowInsets.Type.statusBars())
+                systemBarsBehavior = WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
             }
         }
     }

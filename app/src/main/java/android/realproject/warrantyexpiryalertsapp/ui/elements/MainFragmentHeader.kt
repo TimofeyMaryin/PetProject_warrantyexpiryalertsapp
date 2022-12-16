@@ -38,7 +38,7 @@ fun MainFragmentHeader(
     ConstraintLayout(
         modifier = Modifier
             .fillMaxWidth()
-            .height(180.dp)
+            .height(160.dp)
             .background(SURFACE)
             .then(modifier)
     ) {

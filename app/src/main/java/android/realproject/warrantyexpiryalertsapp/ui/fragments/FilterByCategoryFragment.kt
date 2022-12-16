@@ -2,6 +2,7 @@ package android.realproject.warrantyexpiryalertsapp.ui.fragments
 
 import android.realproject.warrantyexpiryalertsapp.R
 import android.realproject.warrantyexpiryalertsapp.data.db.product.ProductsUnderWarrantyEntity
+import android.realproject.warrantyexpiryalertsapp.data.navigation.Screen
 import android.realproject.warrantyexpiryalertsapp.data.view_model.MainViewModel
 import android.realproject.warrantyexpiryalertsapp.ui.elements.SmallApplicationHeader
 import android.realproject.warrantyexpiryalertsapp.ui.elements.UserProductItem
@@ -57,7 +58,7 @@ fun FilterByCategoryFragment(
             titlePreviousFragment = "Категория",
             titleCurrentFragment = category,
             navController = navController,
-            onCLick = {},
+            onCLick = { navController.navigate(Screen.SettingsScreen.route) },
             iconRes = R.drawable.ic_settings,
             modifier = Modifier.constrainAs(header) {
                 top.linkTo(parent.top)
@@ -90,7 +91,10 @@ fun FilterByCategoryFragment(
                     text = "Похоже вы еще не создали ни одного продукта под этой категорией",
                     textAlign = TextAlign.Center
                 )
-                SmallLightText(text = "Ну ничего не страшно, давай создадим")
+                SmallLightText(
+                    text = "Ну ничего не страшно, давай создадим",
+                    textAlign = TextAlign.Center
+                )
                 IconButton(onClick = { /*TODO*/ }) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_add_circle),

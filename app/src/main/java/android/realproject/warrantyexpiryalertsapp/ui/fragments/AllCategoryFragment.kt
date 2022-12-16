@@ -1,5 +1,6 @@
 package android.realproject.warrantyexpiryalertsapp.ui.fragments
 
+import android.realproject.warrantyexpiryalertsapp.data.navigation.Screen
 import android.realproject.warrantyexpiryalertsapp.data.view_model.MainViewModel
 import android.realproject.warrantyexpiryalertsapp.ui.elements.CategoryItem
 import android.realproject.warrantyexpiryalertsapp.ui.elements.Container
@@ -33,7 +34,7 @@ fun AllCategoryFragment(
             titlePreviousFragment = "Категория",
             titleCurrentFragment = "Все",
             onCLickShare = { Toast.makeText(context, "Share button", Toast.LENGTH_SHORT).show() },
-            onCLickSetting = { Toast.makeText(context, "Settings button", Toast.LENGTH_SHORT).show() },
+            onCLickSetting = { navController.navigate(Screen.SettingsScreen.route) },
             navController = navController
         )
 

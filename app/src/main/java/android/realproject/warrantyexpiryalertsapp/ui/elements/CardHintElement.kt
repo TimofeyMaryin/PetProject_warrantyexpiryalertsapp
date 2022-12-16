@@ -44,7 +44,7 @@ fun CardHintElement(
         items(4) {
             Box(
                 modifier = Modifier
-                    .height(150.dp)
+                    .height(170.dp)
                     .fillParentMaxWidth()
                     .background(Color.Transparent),
                 contentAlignment = Alignment.Center

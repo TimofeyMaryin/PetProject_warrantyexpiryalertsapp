@@ -14,6 +14,7 @@ import androidx.room.PrimaryKey
  * - endOfWarranty - конец гарантии( те придеться конвертировать Date type в String)
  * - category - ну категория товара, что не понятно то?
  * - addiction - дополнительная информация, которая понадобиться юзеру
+ * - dateOfPurchaseOfTheProduct - дата покупки товара
  */
 
 
@@ -24,5 +25,6 @@ data class ProductsUnderWarrantyEntity(
     @Embedded val imagesProduct: Any?,
     @ColumnInfo val endOfWarranty: String,
     @ColumnInfo val category: String,
-    @ColumnInfo val addiction: String? = null
+    @ColumnInfo val addiction: String? = null,
+    @ColumnInfo val dateOfPurchaseOfTheProduct: String
 )

@@ -4,6 +4,7 @@ import android.realproject.warrantyexpiryalertsapp.data.navigation.Screen
 import android.realproject.warrantyexpiryalertsapp.data.view_model.MainViewModel
 import android.realproject.warrantyexpiryalertsapp.ui.elements.*
 import android.realproject.warrantyexpiryalertsapp.ui.elements.text.AdditionallyInfoText
+import android.realproject.warrantyexpiryalertsapp.ui.elements.text.MediumLightText
 import android.realproject.warrantyexpiryalertsapp.ui.elements.text.UserProductTextMainFragment
 import android.realproject.warrantyexpiryalertsapp.ui.theme.BACKGROUND
 import android.realproject.warrantyexpiryalertsapp.utils.ADDITIONALLY_APPLICATION_ITEM
@@ -57,7 +58,7 @@ fun MainFragment(
                 CardHintElement(modifier = Modifier.constrainAs(cardHint) {
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
-                    top.linkTo(header.bottom, margin = (-75).dp)
+                    top.linkTo(header.bottom, margin = (-50).dp)
                 })
 
             }
@@ -94,7 +95,13 @@ fun MainFragment(
                     .padding(vertical = ApplicationUiConst.Padding.LARGE),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                AdditionallyInfoText()
+                // AdditionallyInfoText()
+                MediumLightText(
+                    text = "Дополнительная информация",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = ApplicationUiConst.Padding.LARGE)
+                )
                 for (item in ADDITIONALLY_APPLICATION_ITEM.indices) {
                     Container {
                         AdditionallyItem(additionallyApplicationModel = ADDITIONALLY_APPLICATION_ITEM[item]) {
@@ -114,7 +121,13 @@ fun MainFragment(
                     .padding(vertical = ApplicationUiConst.Padding.LARGE),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                UserProductTextMainFragment()
+                // UserProductTextMainFragment()
+                MediumLightText(
+                    text = "Ваши гарантийные товары",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = ApplicationUiConst.Padding.LARGE),
+                )
                 for (item in viewModel.getAllProduct()) {
                     Container {
                         UserProductItem(product = item)
