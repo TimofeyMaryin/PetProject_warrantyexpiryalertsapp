@@ -1,5 +1,6 @@
 package android.realproject.warrantyexpiryalertsapp.data.view_model
 
+import android.net.Uri
 import android.realproject.warrantyexpiryalertsapp.utils.INDEX_PRODUCT_GUARANTEE
 import android.realproject.warrantyexpiryalertsapp.utils.INDEX_PRODUCT_NAME
 import android.realproject.warrantyexpiryalertsapp.utils.INDEX_PRODUCT_PRICE
@@ -18,9 +19,16 @@ class CreateUserProductViewModel(
     var guaranteePeriod by mutableStateOf("")
     var category by mutableStateOf("")
     var productPrice by mutableStateOf("")
-    var currency by mutableStateOf("")
+    var currency by mutableStateOf("$")
     var description by mutableStateOf("")
-    var openDialog by mutableStateOf(false)
+    var imageModel by mutableStateOf<Any?>(null)
+
+    var selectedImageUri by mutableStateOf<Uri?>(null)
+
+    var openDialogSelectImage by mutableStateOf(false)
+    var openDialogSelectCurrency by mutableStateOf(false)
+    var openDialogSelectCategory by mutableStateOf(false)
+
 
     fun changeValue(index: Int, value: String){
         when(index){

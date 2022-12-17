@@ -7,6 +7,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.TextUnit
@@ -26,7 +27,8 @@ fun MediumLightText(
         maxLines = maxLine,
         overflow = TextOverflow.Ellipsis,
         modifier = modifier,
-        textAlign = textAlign
+        textAlign = textAlign,
+        fontWeight = FontWeight.Light
     )
 
 
@@ -45,5 +47,6 @@ fun MediumLightText(
         maxLines = maxLine,
         overflow = TextOverflow.Ellipsis,
         modifier = modifier,
-        lineHeight = lineHeight
+        lineHeight = lineHeight,
+        fontWeight = FontWeight.Light
         )

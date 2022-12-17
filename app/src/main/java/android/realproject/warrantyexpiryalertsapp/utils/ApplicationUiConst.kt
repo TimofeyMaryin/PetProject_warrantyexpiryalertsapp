@@ -15,12 +15,14 @@ object ApplicationUiConst {
         val BIG = 12.dp
         val LARGE = 16.dp
         val VERY_LARGE = 20.dp
+        val EXTRA_LARGE = 70.dp
     }
 
     object Rounded {
         val BLOCK = 40.dp
         val SMALL = 20.dp
         const val CONTENT = 50
+        val VERY_SMALL = 8.dp
     }
 
     object FontSize {
@@ -44,7 +46,8 @@ object ApplicationUiConst {
         val CATEGORY_ITEM_IMAGE = 50.dp
         val HEIGHT_CARD = 130.dp
         val HEIGHT_HEADER = 80.dp
-
+        val IMAGE_SIZE = 100.dp
+        val HEIGHT_ALERT_ELEMENT = 50.dp
     }
 
 }

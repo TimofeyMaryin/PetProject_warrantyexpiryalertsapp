@@ -10,5 +10,6 @@ package android.realproject.warrantyexpiryalertsapp.model
 data class CategoryItemModel(
     val image: Int,
     val title: String,
-    val category: String
+    val category: String,
+    val emoji: String,
 )

@@ -20,12 +20,8 @@ private val DarkColorPalette = darkColors(
 fun WarrantyExpiryAlertsAppTheme(
     content: @Composable () -> Unit
 ) {
-    val systemUiController = rememberSystemUiController()
     val colors = DarkColorPalette
 
-
-    systemUiController.isStatusBarVisible = false
-    systemUiController.setStatusBarColor(color = Color.Transparent)
 
     MaterialTheme(
         colors = colors,

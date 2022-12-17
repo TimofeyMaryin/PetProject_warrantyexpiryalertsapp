@@ -16,6 +16,8 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,6 +25,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import kotlin.random.Random
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -32,7 +35,6 @@ fun CardHintElement(
     val state = rememberLazyListState()
     val snappingLayout = remember(state) { SnapLayoutInfoProvider(state) }
     val flingBehavior = rememberSnapFlingBehavior(snappingLayout)
-
     LazyRow(
         modifier = Modifier
             .fillMaxWidth()
@@ -57,14 +59,16 @@ fun CardHintElement(
                         .border(BorderStroke(2.dp, SURFACE.copy(1f)), RoundedCornerShape(ApplicationUiConst.Rounded.BLOCK)),
                     contentAlignment = Alignment.Center
                 ){
-
+                    val random by remember {
+                        mutableStateOf(Random.nextInt(4, 23))
+                    }
                     Column(
                         modifier = Modifier.fillMaxWidth(.6f).padding(vertical = ApplicationUiConst.Padding.VERY_LARGE),
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center
                     ) {
                         MediumBoldText(text = "Hint №$it")
-                        SmallLightText(text = "sdafjhksdahfjksadhjklfdsahjkfhjaksdlfhjkdsafhkjsadfhjkasdfkjlsdakjflsadhjkf")
+                        SmallLightText(text = "qwerty ".repeat(random))
                     }
                 }
             }

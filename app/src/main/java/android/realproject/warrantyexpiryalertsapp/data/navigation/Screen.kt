@@ -1,8 +1,5 @@
 package android.realproject.warrantyexpiryalertsapp.data.navigation
 
-import android.realproject.warrantyexpiryalertsapp.data.db.product.ProductsUnderWarrantyEntity
-import android.realproject.warrantyexpiryalertsapp.data.db.user_info.UserEntity
-
 
 /**
  * MainScreen - фрагмент главного экрана
@@ -26,4 +23,6 @@ sealed class Screen(val route: String){
     object CategoryProductScreen: Screen(route = "category_screen_item")
     object ProfileUser: Screen(route = "user_info_screen")
     object ProductItemScreen: Screen(route = "product_item_screen")
+
+    object SelectImageFromArchiveScreen: Screen(route = "select_image_from_archive_screen")
 }

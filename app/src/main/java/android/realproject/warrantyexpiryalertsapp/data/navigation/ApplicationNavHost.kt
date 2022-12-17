@@ -34,7 +34,8 @@ fun ApplicationNavHost(
             TransitionUnderFragment {
                 CreateProductFragment(
                     navController = navController,
-                    viewModel = createUserProductViewModel
+                    viewModel = createUserProductViewModel,
+                    mainViewModel = mainViewModel
                 )
             }
         }
@@ -78,6 +79,15 @@ fun ApplicationNavHost(
             val argument = it.arguments?.getString("item", "1")
             TransitionUnderFragment {
                 AdditionallyFragment(index = argument!!.toInt())
+            }
+        }
+
+        composable(Screen.SelectImageFromArchiveScreen.route) {
+            TransitionUnderFragment {
+                SelectImageFromArchiveFragment(
+                    viewModel = createUserProductViewModel,
+                    navController = navController
+                )
             }
         }
 

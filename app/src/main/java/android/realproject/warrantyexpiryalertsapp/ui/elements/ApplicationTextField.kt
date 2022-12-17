@@ -6,8 +6,10 @@ import android.realproject.warrantyexpiryalertsapp.ui.elements.text.MediumLightT
 import android.realproject.warrantyexpiryalertsapp.ui.elements.text.SmallLightText
 import android.realproject.warrantyexpiryalertsapp.ui.theme.PRIMARY
 import android.realproject.warrantyexpiryalertsapp.ui.theme.PRIMARY_70
+import android.realproject.warrantyexpiryalertsapp.utils.ApplicationUiConst
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -34,7 +36,7 @@ fun ApplicationTextField(
         placeholder = {
             SmallLightText(text = placeHolder)
         },
-        shape = CircleShape,
+        shape = RoundedCornerShape(ApplicationUiConst.Rounded.SMALL),
         trailingIcon = { Icon(painter = painterResource(id = icon), contentDescription = null, tint = PRIMARY) },
         colors = TextFieldDefaults.outlinedTextFieldColors(
             textColor = PRIMARY,
@@ -62,7 +64,7 @@ fun ApplicationTextField(
         placeholder = {
             SmallLightText(text = placeHolder)
         },
-        shape = CircleShape,
+        shape = RoundedCornerShape(ApplicationUiConst.Rounded.SMALL),
         colors = TextFieldDefaults.outlinedTextFieldColors(
             textColor = PRIMARY,
             disabledLabelColor = PRIMARY_70,
@@ -90,7 +92,7 @@ fun ApplicationTextField(
         placeholder = {
             SmallLightText(text = placeHolder)
         },
-        shape = CircleShape,
+        shape = RoundedCornerShape(ApplicationUiConst.Rounded.SMALL),
         colors = TextFieldDefaults.outlinedTextFieldColors(
             textColor = PRIMARY,
             disabledLabelColor = PRIMARY_70,
@@ -99,5 +101,29 @@ fun ApplicationTextField(
         keyboardOptions = KeyboardOptions(keyboardType = keyboardType)
     )
 }
+
+@Composable
+fun ApplicationTextField(
+    modifier: Modifier = Modifier,
+    value: String,
+    placeHolder: String,
+    onValueChange: (String) -> Unit
+) {
+    OutlinedTextField(
+        value = value,
+        onValueChange = { onValueChange(it) },
+        modifier = modifier,
+        singleLine = false,
+        placeholder = {
+            SmallLightText(text = placeHolder)
+        },
+        shape = RoundedCornerShape(ApplicationUiConst.Rounded.SMALL),
+        colors = TextFieldDefaults.outlinedTextFieldColors(
+            textColor = PRIMARY,
+            disabledLabelColor = PRIMARY_70,
+        ),
+    )
+}
+
 
 

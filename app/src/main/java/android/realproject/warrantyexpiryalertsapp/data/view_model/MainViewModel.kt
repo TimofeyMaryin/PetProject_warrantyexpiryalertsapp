@@ -32,27 +32,25 @@ class MainViewModel(
 
 
     val categoryItemMainFragment = listOf(
-        CategoryItemModel(R.drawable.motherboard, "Микроэлектроника", "Микроэлектроника"),
-        CategoryItemModel(R.drawable.car, "Авто", "Авто"),
-        CategoryItemModel(R.drawable.furnitureandhousehold, "Бытовая теххника", "Бытовая теххника"),
-        CategoryItemModel(R.drawable.cash, "Бизнес", "Бизнес"),
-        CategoryItemModel(R.drawable.baby, "Для детей", "Для детей"),
-        CategoryItemModel(R.drawable.more, "Прочее", "other")
+        CategoryItemModel(R.drawable.motherboard, "Микроэлектроника", "Микроэлектроника", "\uD83D\uDCF1"),
+        CategoryItemModel(R.drawable.car, "Авто", "Авто", "\uD83D\uDE97 "),
+        CategoryItemModel(R.drawable.furnitureandhousehold, "Бытовая теххника", "Бытовая теххника", "\uD83D\uDECB️"),
+        CategoryItemModel(R.drawable.cash, "Бизнес", "Бизнес", "\uD83D\uDCB8"),
+        CategoryItemModel(R.drawable.baby, "Для детей", "Для детей", "\uD83E\uDDD2\uD83C\uDFFF"),
+        CategoryItemModel(R.drawable.more, "Прочее", "other", "")
     )
 
     val allCategoryItem = listOf(
-        CategoryItemModel(R.drawable.motherboard, "Микроэлектроника", "Микроэлектроника"),
-        CategoryItemModel(R.drawable.car, "Авто", "Авто"),
-        CategoryItemModel(R.drawable.furnitureandhousehold, "Бытовая теххника", "Бытовая теххника"),
-        CategoryItemModel(R.drawable.cash, "Бизнес", "Бизнес"),
-        CategoryItemModel(R.drawable.baby, "Для детей", "Для детей"),
-        CategoryItemModel(R.drawable.motherboard, "Микроэлектроника", "Микроэлектроника"),
-        CategoryItemModel(R.drawable.motherboard, "Микроэлектроника", "Микроэлектроника"),
-        CategoryItemModel(R.drawable.car, "Авто", "Авто"),
-        CategoryItemModel(R.drawable.furnitureandhousehold, "Бытовая теххника", "Бытовая теххника"),
-        CategoryItemModel(R.drawable.cash, "Бизнес", "Бизнес"),
-        CategoryItemModel(R.drawable.baby, "Для детей", "Для детей"),
-        CategoryItemModel(R.drawable.motherboard, "Микроэлектроника", "Микроэлектроника"),
+        CategoryItemModel(R.drawable.motherboard, "Микроэлектроника", "Микроэлектроника", "\uD83D\uDCF1"),
+        CategoryItemModel(R.drawable.car, "Авто", "Авто", "\uD83D\uDE97 "),
+        CategoryItemModel(R.drawable.furnitureandhousehold, "Бытовая теххника", "Бытовая теххника", "\uD83D\uDECB️"),
+        CategoryItemModel(R.drawable.cash, "Бизнес", "Бизнес", "\uD83D\uDCB8"),
+        CategoryItemModel(R.drawable.baby, "Для детей", "Для детей", "\uD83E\uDDD2\uD83C\uDFFF"),
+        CategoryItemModel(R.drawable.motherboard, "Микроэлектроника", "Микроэлектроника", "\uD83D\uDCF1"),
+        CategoryItemModel(R.drawable.car, "Авто", "Авто", "\uD83D\uDE97 "),
+        CategoryItemModel(R.drawable.furnitureandhousehold, "Бытовая теххника", "Бытовая теххника", "\uD83D\uDECB️"),
+        CategoryItemModel(R.drawable.cash, "Бизнес", "Бизнес", "\uD83D\uDCB8"),
+        CategoryItemModel(R.drawable.baby, "Для детей", "Для детей", "\uD83E\uDDD2\uD83C\uDFFF"),
     )
 
     fun navigateToCategoryProduct(index: Int, needLastEl: Boolean = true){
