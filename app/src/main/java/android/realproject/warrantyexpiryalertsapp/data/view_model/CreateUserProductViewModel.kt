@@ -9,6 +9,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.Calendar
 
 class CreateUserProductViewModel(
     private val navController: NavController,
@@ -36,6 +39,17 @@ class CreateUserProductViewModel(
             INDEX_PRODUCT_PRICE -> productPrice = value
             INDEX_PRODUCT_GUARANTEE -> guaranteePeriod = value
         }
+    }
+
+
+    // TODO("РЕАЛИЗОВАТЬ И НЕ ЗАБЫТЬ!!")
+    fun validateCurrentEnterData() {
+        val currentDate = LocalDate.now()
+        val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+
+
+
+        val userEnterDate = LocalDate.parse(dateOfBuyProduct)
     }
 
 }

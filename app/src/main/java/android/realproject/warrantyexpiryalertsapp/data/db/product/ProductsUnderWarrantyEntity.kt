@@ -20,10 +20,10 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class ProductsUnderWarrantyEntity(
-    @PrimaryKey var id: Long = 0,
+    @PrimaryKey(autoGenerate = true) var id: Long = 0,
     @ColumnInfo val productName: String,
     @Embedded val imagesProduct: Any?,
-    @ColumnInfo val endOfWarranty: String,
+    @ColumnInfo val guaranteePeriod: String,
     @ColumnInfo val category: String,
     @ColumnInfo val addiction: String? = null,
     @ColumnInfo val dateOfPurchaseOfTheProduct: String

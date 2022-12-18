@@ -125,5 +125,28 @@ fun ApplicationTextField(
     )
 }
 
+@Composable
+fun ApplicationTextField(
+    modifier: Modifier = Modifier,
+    value: String,
+    placeHolder: String,
+    onValueChange: (String) -> Unit,
+    singleLine: Boolean,
+) {
+    OutlinedTextField(
+        value = value,
+        onValueChange = { onValueChange(it) },
+        modifier = modifier,
+        singleLine = singleLine,
+        placeholder = {
+            SmallLightText(text = placeHolder)
+        },
+        shape = RoundedCornerShape(ApplicationUiConst.Rounded.SMALL),
+        colors = TextFieldDefaults.outlinedTextFieldColors(
+            textColor = PRIMARY,
+            disabledLabelColor = PRIMARY_70,
+        ),
+    )
+}
 
 

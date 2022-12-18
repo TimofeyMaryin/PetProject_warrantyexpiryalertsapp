@@ -3,6 +3,7 @@ package android.realproject.warrantyexpiryalertsapp.ui.fragments
 import android.app.DatePickerDialog
 import android.icu.util.Calendar
 import android.realproject.warrantyexpiryalertsapp.R
+import android.realproject.warrantyexpiryalertsapp.data.db.product.ProductsUnderWarrantyEntity
 import android.realproject.warrantyexpiryalertsapp.data.navigation.Screen
 import android.realproject.warrantyexpiryalertsapp.data.view_model.CreateUserProductViewModel
 import android.realproject.warrantyexpiryalertsapp.data.view_model.MainViewModel
@@ -50,6 +51,7 @@ import androidx.navigation.NavController
 import kotlin.random.Random
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import kotlinx.coroutines.launch
 import java.util.Date
 
 @Composable
@@ -65,6 +67,9 @@ fun CreateProductFragment(
         contract = ActivityResultContracts.PickVisualMedia(),
         onResult = { uri -> viewModel.imageModel = uri }
     )
+
+
+    val coroutineScope = rememberCoroutineScope()
 
     val calendar = Calendar.getInstance()
     val dayOfMonth: Int = calendar.get(Calendar.DAY_OF_MONTH)
@@ -114,7 +119,8 @@ fun CreateProductFragment(
                          value = viewModel.productName,
                          placeHolder = "Укажите название продукта",
                          onValueChange = { viewModel.changeValue(INDEX_PRODUCT_NAME, it) },
-                         modifier = Modifier.fillMaxWidth()
+                         modifier = Modifier.fillMaxWidth(),
+                         singleLine = true
                      )
 
                  }
@@ -131,7 +137,8 @@ fun CreateProductFragment(
                              }
                          },
                          modifier = Modifier.fillMaxWidth(),
-                         keyboardType = KeyboardType.Number
+                         keyboardType = KeyboardType.Number,
+
                      )
                  }
              }
@@ -140,7 +147,7 @@ fun CreateProductFragment(
                      ApplicationTextField(
                          value = viewModel.dateOfBuyProduct,
                          placeHolder = "Укажите дату покупки",
-                         modifier = Modifier.fillMaxWidth()
+                         modifier = Modifier.fillMaxWidth(),
                      )
                      CreateElementTextField(
                          onClickAction = {
@@ -191,7 +198,9 @@ fun CreateProductFragment(
                          CreateElementTextField(
                              onClickAction = { viewModel.openDialogSelectCurrency = true },
                              text = viewModel.currency,
-                             modifier = Modifier.weight(3f).background(SECONDARY),
+                             modifier = Modifier
+                                 .weight(3f)
+                                 .background(SECONDARY),
                              textAlign = TextAlign.Center
                          )
 
@@ -264,7 +273,23 @@ fun CreateProductFragment(
                  ) {
                      Container {
                          Button(
-                             onClick = { /*TODO*/ },
+                             onClick = {
+                                coroutineScope.launch {
+                                    mainViewModel.insertProduct(
+                                        ProductsUnderWarrantyEntity(
+                                            productName = viewModel.productName,
+                                            imagesProduct = viewModel.imageModel ?: "",
+                                            guaranteePeriod = viewModel.guaranteePeriod,
+                                            category = viewModel.category,
+                                            addiction = viewModel.description,
+                                            dateOfPurchaseOfTheProduct = viewModel.dateOfBuyProduct
+                                        )
+                                    )
+
+                                }
+                                 navController.navigate(Screen.MainScreen.route)
+                                 Toast.makeText(context, "Вы создали первую карточку, поздравляю вас!!", Toast.LENGTH_SHORT).show()
+                             },
                              modifier = Modifier.fillMaxWidth(),
                              colors = ButtonDefaults.buttonColors(
                                  backgroundColor = SECONDARY,
@@ -280,7 +305,9 @@ fun CreateProductFragment(
              }
 
              item {
-                 Box(modifier = Modifier.fillMaxWidth().height(200.dp))
+                 Box(modifier = Modifier
+                     .fillMaxWidth()
+                     .height(200.dp))
              }
 
 

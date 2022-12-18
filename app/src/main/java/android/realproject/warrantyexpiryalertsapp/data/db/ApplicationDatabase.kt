@@ -15,7 +15,7 @@ import androidx.room.RoomDatabase
         ProductsUnderWarrantyEntity::class,
         UserEntity::class
     ],
-    version = 2,
+    version = 6,
     exportSchema = false
 )
 abstract class ApplicationDatabase: RoomDatabase() {

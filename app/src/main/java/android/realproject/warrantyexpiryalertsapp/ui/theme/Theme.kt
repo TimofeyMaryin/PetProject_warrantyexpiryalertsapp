@@ -21,7 +21,8 @@ fun WarrantyExpiryAlertsAppTheme(
     content: @Composable () -> Unit
 ) {
     val colors = DarkColorPalette
-
+    val systemUI = rememberSystemUiController()
+    systemUI.setStatusBarColor(SURFACE)
 
     MaterialTheme(
         colors = colors,

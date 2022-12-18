@@ -135,6 +135,8 @@ fun MainFragment(
                 }
             }
         }
+
+        item { Box(modifier = Modifier.fillMaxWidth().height(250.dp)) }
     }
 }
 
