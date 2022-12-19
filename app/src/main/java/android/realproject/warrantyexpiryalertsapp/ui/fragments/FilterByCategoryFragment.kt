@@ -4,6 +4,7 @@ import android.realproject.warrantyexpiryalertsapp.R
 import android.realproject.warrantyexpiryalertsapp.data.db.product.ProductsUnderWarrantyEntity
 import android.realproject.warrantyexpiryalertsapp.data.navigation.Screen
 import android.realproject.warrantyexpiryalertsapp.data.view_model.MainViewModel
+import android.realproject.warrantyexpiryalertsapp.ui.elements.Container
 import android.realproject.warrantyexpiryalertsapp.ui.elements.SmallApplicationHeader
 import android.realproject.warrantyexpiryalertsapp.ui.elements.UserProductItem
 import android.realproject.warrantyexpiryalertsapp.ui.elements.text.LargeBoldText
@@ -12,6 +13,7 @@ import android.realproject.warrantyexpiryalertsapp.ui.theme.SECONDARY
 import android.realproject.warrantyexpiryalertsapp.ui.theme.SURFACE
 import android.realproject.warrantyexpiryalertsapp.utils.ApplicationUiConst
 import android.util.Log
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Icon
@@ -20,6 +22,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -35,16 +38,8 @@ fun FilterByCategoryFragment(
     viewModel: MainViewModel,
     navController: NavController
 ) {
-    var getSizeList by remember { mutableStateOf(-1) }
-    val listProduct = mutableListOf<ProductsUnderWarrantyEntity>()
-
-
-    LaunchedEffect(Dispatchers.IO) {
-        getSizeList = viewModel.getProductByCategory(category).size
-        for (el in viewModel.getProductByCategory(category)) { listProduct.add(el) }
-
-
-        Log.e("FilterByCategoryFragment", "getSizeList: $getSizeList", )
+    val getProductByCategory by remember {
+        mutableStateOf(viewModel.getProductByCategory(category))
     }
 
 
@@ -64,7 +59,8 @@ fun FilterByCategoryFragment(
                 top.linkTo(parent.top)
             }
         )
-        if(listProduct.size != 0) {
+
+        if(getProductByCategory.size != 0) {
             LazyColumn(
                 modifier = Modifier.constrainAs(cards) {
                     top.linkTo(header.bottom)
@@ -72,18 +68,31 @@ fun FilterByCategoryFragment(
                     end.linkTo(parent.end)
                 }
             ) {
-                items(getSizeList) {
-                    UserProductItem(product = listProduct[it])
+                items(getProductByCategory.size) {
+                    Container {
+                        UserProductItem(
+                            product = getProductByCategory[it],
+                            modifier = Modifier.clickable {
+                                navController.currentBackStackEntry?.savedStateHandle?.set(
+                                    key = "item",
+                                    value = getProductByCategory[it]
+                                )
+                                navController.navigate(Screen.ShowDetailsScreen.route)
+                            }
+                        )
+                    }
                 }
             }
         } else {
             Column(
-                modifier = Modifier.fillMaxWidth(.7f).constrainAs(hint) {
-                    top.linkTo(parent.top)
-                    bottom.linkTo(parent.bottom)
-                    start.linkTo(parent.start)
-                    end.linkTo(parent.end)
-                },
+                modifier = Modifier
+                    .fillMaxWidth(.7f)
+                    .constrainAs(hint) {
+                        top.linkTo(parent.top)
+                        bottom.linkTo(parent.bottom)
+                        start.linkTo(parent.start)
+                        end.linkTo(parent.end)
+                    },
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 LargeBoldText(text = "Упс...")

@@ -23,6 +23,19 @@ fun MediumBoldText(
 fun MediumBoldText(
     text: String,
     modifier: Modifier,
+) =
+    Text(
+        text = text,
+        fontWeight = FontWeight.Bold,
+        style = Typography.caption,
+        modifier = modifier,
+    )
+
+
+@Composable
+fun MediumBoldText(
+    text: String,
+    modifier: Modifier,
     textAlign: TextAlign
 ) =
     Text(

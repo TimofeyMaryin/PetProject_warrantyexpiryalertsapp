@@ -12,6 +12,8 @@ val SECONDARY = Color(0xFF00ADB5)
 val PRIMARY = Color(0xFFEEEEEE)
 val PRIMARY_70 = Color(0xB3EEEEEE)
 
+val DANGEROUS =Color(0xFFE60012)
+
 val SHADOW_PRODUCT_ITEM = Brush.horizontalGradient(
     listOf(
         Color.Black,

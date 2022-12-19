@@ -19,6 +19,6 @@ interface ProductsUnderWarrantyDao {
     fun getAllProduct(): MutableList<ProductsUnderWarrantyEntity>
 
     @Query("select * from productsunderwarrantyentity where category = :category")
-    suspend fun getProductByCategory(category: String): MutableList<ProductsUnderWarrantyEntity>
+    fun getProductByCategory(category: String): MutableList<ProductsUnderWarrantyEntity>
 
 }

@@ -14,7 +14,7 @@ import androidx.navigation.NavController
 
 class MainViewModel(
     private val application: Application,
-    private val navController: NavController
+    val navController: NavController
 ): ViewModel(), UserImpl, ProductsUnderWarrantyImpl {
     private val userDao = ApplicationDatabase.getInstance(application).userDao()
     private val productDao = ApplicationDatabase.getInstance(application).productDao()
@@ -23,7 +23,7 @@ class MainViewModel(
     override fun getAllProduct(): MutableList<ProductsUnderWarrantyEntity> = productDao.getAllProduct()
     override suspend fun insertProduct(product: ProductsUnderWarrantyEntity) = productDao.insertProduct(product)
     override suspend fun deleteProduct(product: ProductsUnderWarrantyEntity) = productDao.deleteProduct(product = product)
-    override suspend fun getProductByCategory(category: String): MutableList<ProductsUnderWarrantyEntity> = productDao.getProductByCategory(category)
+    override fun getProductByCategory(category: String): MutableList<ProductsUnderWarrantyEntity> = productDao.getProductByCategory(category)
 
     override suspend fun insertUser(user: UserEntity) = userDao.insertUser(user)
     override suspend fun updateUserInfo(user: UserEntity) = userDao.updateUserInfo(user)
@@ -69,5 +69,9 @@ class MainViewModel(
         }
     }
 
+    fun checkTimeOutWarranty(dateOfBuyProduct: String, guaranteePeriod: String): String{
+        return "00/00/2000"
+    }
 
+    fun popBackStack() = navController.popBackStack()
 }

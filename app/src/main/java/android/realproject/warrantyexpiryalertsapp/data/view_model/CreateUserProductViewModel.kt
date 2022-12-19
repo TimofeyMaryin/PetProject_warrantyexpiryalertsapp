@@ -1,6 +1,9 @@
 package android.realproject.warrantyexpiryalertsapp.data.view_model
 
+import android.graphics.Bitmap
 import android.net.Uri
+import android.realproject.warrantyexpiryalertsapp.data.db.product.ProductsUnderWarrantyEntity
+import android.realproject.warrantyexpiryalertsapp.model.ImageSaveModel
 import android.realproject.warrantyexpiryalertsapp.utils.INDEX_PRODUCT_GUARANTEE
 import android.realproject.warrantyexpiryalertsapp.utils.INDEX_PRODUCT_NAME
 import android.realproject.warrantyexpiryalertsapp.utils.INDEX_PRODUCT_PRICE
@@ -24,7 +27,7 @@ class CreateUserProductViewModel(
     var productPrice by mutableStateOf("")
     var currency by mutableStateOf("$")
     var description by mutableStateOf("")
-    var imageModel by mutableStateOf<Any?>(null)
+    var imageModel by mutableStateOf<String?>(null)
 
     var selectedImageUri by mutableStateOf<Uri?>(null)
 
@@ -50,6 +53,21 @@ class CreateUserProductViewModel(
 
 
         val userEnterDate = LocalDate.parse(dateOfBuyProduct)
+    }
+
+    suspend fun createCard() {
+        mainViewModel.insertProduct(
+            ProductsUnderWarrantyEntity(
+                category = category,
+                guaranteePeriod = guaranteePeriod,
+                addiction = description,
+                dateOfPurchaseOfTheProduct = dateOfBuyProduct,
+                imageSrc = imageModel!!,
+                productName = productName,
+                productPrice = productPrice,
+                currency = currency
+            )
+        )
     }
 
 }

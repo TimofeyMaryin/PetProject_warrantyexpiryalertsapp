@@ -1,5 +1,6 @@
 package android.realproject.warrantyexpiryalertsapp.data.navigation
 
+import android.realproject.warrantyexpiryalertsapp.data.db.product.ProductsUnderWarrantyEntity
 import android.realproject.warrantyexpiryalertsapp.data.view_model.CreateUserProductViewModel
 import android.realproject.warrantyexpiryalertsapp.data.view_model.MainViewModel
 import android.realproject.warrantyexpiryalertsapp.ui.elements.animation.TransitionUnderFragment
@@ -83,11 +84,21 @@ fun ApplicationNavHost(
         }
 
         composable(Screen.SelectImageFromArchiveScreen.route) {
+
             TransitionUnderFragment {
                 SelectImageFromArchiveFragment(
                     viewModel = createUserProductViewModel,
                     navController = navController
                 )
+            }
+        }
+
+        composable(Screen.ShowDetailsScreen.route){
+            val item = navController.previousBackStackEntry?.savedStateHandle?.get<ProductsUnderWarrantyEntity>("item")
+
+
+            TransitionUnderFragment {
+                DetailsProductFragment(viewModel = mainViewModel, product = item)
             }
         }
 

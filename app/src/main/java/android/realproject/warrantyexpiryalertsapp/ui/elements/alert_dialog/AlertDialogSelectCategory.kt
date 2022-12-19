@@ -38,11 +38,19 @@ fun AlertDialogSelectCategory(
                     .height(ApplicationUiConst.SizeObject.HEIGHT_ALERT_ELEMENT),
                 contentAlignment = Alignment.Center
             ) {
-                MediumBoldText(
-                    text = "${mainViewModel.allCategoryItem[it].emoji} ${mainViewModel.allCategoryItem[it].title}",
-                    modifier = Modifier.fillMaxWidth(),
-                    textAlign = TextAlign.Center,
-                )
+                Row(
+                    modifier = Modifier.fillMaxWidth(.97f),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    MediumBoldText(
+                        text = mainViewModel.allCategoryItem[it].emoji,
+                    )
+                    MediumBoldText(
+                        text = mainViewModel.allCategoryItem[it].title,
+                    )
+
+                }
             }
         }
     }

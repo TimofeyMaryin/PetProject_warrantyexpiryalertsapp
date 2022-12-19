@@ -25,4 +25,5 @@ sealed class Screen(val route: String){
     object ProductItemScreen: Screen(route = "product_item_screen")
 
     object SelectImageFromArchiveScreen: Screen(route = "select_image_from_archive_screen")
+    object ShowDetailsScreen: Screen(route = "show_details_screen")
 }

@@ -23,6 +23,7 @@ import android.realproject.warrantyexpiryalertsapp.utils.ApplicationUiConst
 import android.realproject.warrantyexpiryalertsapp.utils.INDEX_PRODUCT_GUARANTEE
 import android.realproject.warrantyexpiryalertsapp.utils.INDEX_PRODUCT_NAME
 import android.realproject.warrantyexpiryalertsapp.utils.INDEX_PRODUCT_PRICE
+import android.util.Log
 import android.widget.DatePicker
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -63,10 +64,6 @@ fun CreateProductFragment(
 
     val generateRandomNum by remember { mutableStateOf(Random.nextInt(0, 9999)) }
     val context = LocalContext.current
-    val photoPickerLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.PickVisualMedia(),
-        onResult = { uri -> viewModel.imageModel = uri }
-    )
 
 
     val coroutineScope = rememberCoroutineScope()
@@ -226,7 +223,7 @@ fun CreateProductFragment(
                          modifier = Modifier
                              .fillMaxWidth()
                              .clickable {
-                                 viewModel.openDialogSelectImage = true
+                                 navController.navigate(Screen.SelectImageFromArchiveScreen.route)
                              }
                              .height(ApplicationUiConst.SizeObject.HEIGHT_CARD)
                              .border(
@@ -274,18 +271,9 @@ fun CreateProductFragment(
                      Container {
                          Button(
                              onClick = {
+                                 Log.e("CreateProductFragment", "imageModel: ${ viewModel.imageModel}", )
                                 coroutineScope.launch {
-                                    mainViewModel.insertProduct(
-                                        ProductsUnderWarrantyEntity(
-                                            productName = viewModel.productName,
-                                            imagesProduct = viewModel.imageModel ?: "",
-                                            guaranteePeriod = viewModel.guaranteePeriod,
-                                            category = viewModel.category,
-                                            addiction = viewModel.description,
-                                            dateOfPurchaseOfTheProduct = viewModel.dateOfBuyProduct
-                                        )
-                                    )
-
+                                    viewModel.createCard()
                                 }
                                  navController.navigate(Screen.MainScreen.route)
                                  Toast.makeText(context, "Вы создали первую карточку, поздравляю вас!!", Toast.LENGTH_SHORT).show()
@@ -314,31 +302,6 @@ fun CreateProductFragment(
         }
     }
 
-
-    if(viewModel.openDialogSelectImage) {
-        AlertDialog(
-            onDismissRequest = { viewModel.openDialogSelectImage = false },
-            buttons = {
-                AlertSelectWayGetImage(
-                    fromArchive = {
-                        navController.navigate(Screen.SelectImageFromArchiveScreen.route)
-                        viewModel.openDialogSelectImage = false
-                    },
-                    fromGallery = {
-                        photoPickerLauncher.launch (
-                            PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
-                        )
-                        viewModel.openDialogSelectImage = false
-
-                    }
-                )
-            },
-            modifier = Modifier
-                .clip(RoundedCornerShape(ApplicationUiConst.Rounded.BLOCK))
-                .fillMaxHeight(.5f),
-            backgroundColor = BACKGROUND
-        )
-    }
 
     if(viewModel.openDialogSelectCurrency) {
         AlertDialog(

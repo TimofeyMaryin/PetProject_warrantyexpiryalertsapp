@@ -46,7 +46,8 @@ import kotlinx.coroutines.launch
 @Composable
 fun SelectImageFromArchiveFragment(
     viewModel: CreateUserProductViewModel,
-    navController: NavController
+    navController: NavController,
+
 ) {
     val bottomSheetScaffoldState = rememberBottomSheetScaffoldState(bottomSheetState = BottomSheetState(BottomSheetValue.Collapsed))
     val coroutineScope = rememberCoroutineScope()

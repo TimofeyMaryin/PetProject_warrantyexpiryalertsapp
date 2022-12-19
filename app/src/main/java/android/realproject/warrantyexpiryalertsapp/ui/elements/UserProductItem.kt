@@ -27,7 +27,10 @@ import androidx.compose.ui.text.style.TextAlign
 import coil.compose.AsyncImage
 
 @Composable
-fun UserProductItem(product: ProductsUnderWarrantyEntity){
+fun UserProductItem(
+    product: ProductsUnderWarrantyEntity,
+    modifier: Modifier,
+){
     Column(
         modifier = Modifier.fillMaxWidth(),
     ) {
@@ -35,12 +38,12 @@ fun UserProductItem(product: ProductsUnderWarrantyEntity){
             modifier = Modifier
                 .clip(RoundedCornerShape(ApplicationUiConst.Rounded.SMALL))
                 .fillMaxWidth()
-                .height(ApplicationUiConst.SizeObject.HEIGHT_CARD),
+                .height(ApplicationUiConst.SizeObject.HEIGHT_CARD)
+                .then(modifier),
             contentAlignment = Alignment.CenterStart
         ) {
-
             AsyncImage(
-                model = product.imagesProduct ?: IMAGE_ARCHIVE[0],
+                model = product.imageSrc ,
                 contentDescription = null,
                 modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.Crop
@@ -50,7 +53,7 @@ fun UserProductItem(product: ProductsUnderWarrantyEntity){
 
             MediumBoldText(
                 text = product.productName,
-                modifier = Modifier.padding(vertical = ApplicationUiConst.Padding.BIG),
+                modifier = Modifier.padding(vertical = ApplicationUiConst.Padding.BIG, horizontal = ApplicationUiConst.Padding.SMALL),
                 textAlign = TextAlign.Start
             )
         }

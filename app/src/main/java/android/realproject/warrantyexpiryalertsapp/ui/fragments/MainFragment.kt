@@ -13,6 +13,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -130,7 +131,7 @@ fun MainFragment(
                 )
                 for (item in viewModel.getAllProduct()) {
                     Container {
-                        UserProductItem(product = item)
+                        UserProductItem(product = item, modifier = Modifier.clickable{navController.navigate(Screen.ShowDetailsScreen.route)})
                     }
                 }
             }
