@@ -2,19 +2,16 @@ package android.realproject.warrantyexpiryalertsapp.ui.fragments
 
 import android.app.Application
 import android.realproject.warrantyexpiryalertsapp.R
+import android.realproject.warrantyexpiryalertsapp.data.navigation.Screen
 import android.realproject.warrantyexpiryalertsapp.data.view_model.MainViewModel
 import android.realproject.warrantyexpiryalertsapp.ui.elements.ApplicationTextField
 import android.realproject.warrantyexpiryalertsapp.ui.elements.text.MediumLightText
 import android.realproject.warrantyexpiryalertsapp.ui.elements.text.SmallLightText
-import android.realproject.warrantyexpiryalertsapp.ui.theme.BACKGROUND
-import android.realproject.warrantyexpiryalertsapp.ui.theme.PRIMARY
-import android.realproject.warrantyexpiryalertsapp.ui.theme.SECONDARY
+import android.realproject.warrantyexpiryalertsapp.ui.theme.*
 import android.realproject.warrantyexpiryalertsapp.utils.ApplicationUiConst
 import android.service.autofill.UserData
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
+import android.widget.Toast
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
@@ -30,6 +27,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -41,30 +39,16 @@ fun ProfileUserFragment(
     viewModel: MainViewModel,
     navController: NavController
 ){
-
+    val context = LocalContext.current
     ConstraintLayout(
         modifier = Modifier.fillMaxSize()
     ) {
         val (
             cardImage, avatar,
             personData, exitButton,
-            textFields
+            textFields, bottomBar
         ) = createRefs()
 
-
-        IconButton(onClick = { navController.popBackStack() }) {
-            Icon(
-                imageVector = Icons.Default.ArrowBack,
-                contentDescription = null,
-                tint = Color.Black,
-                modifier = Modifier
-                    .size(ApplicationUiConst.SizeObject.ICON_SIZE)
-                    .constrainAs(exitButton) {
-                        top.linkTo(parent.top,)
-                        start.linkTo(parent.start,)
-                    }
-            )
-        }
 
         if(
             viewModel.getUser() != null &&
@@ -130,7 +114,9 @@ fun ProfileUserFragment(
                 Image(
                     painter = painterResource(id = R.drawable.default_avatar),
                     contentDescription = null,
-                    modifier = Modifier.fillMaxSize(.93f).clip(CircleShape),
+                    modifier = Modifier
+                        .fillMaxSize(.93f)
+                        .clip(CircleShape),
                     contentScale = ContentScale.Crop
                 )
 
@@ -152,6 +138,51 @@ fun ProfileUserFragment(
             top.linkTo(personData.bottom, margin = ApplicationUiConst.Padding.BIG)
             start.linkTo(parent.start, margin = ApplicationUiConst.Padding.LARGE)
         })
+
+        Row(
+            modifier = Modifier
+                .height(100.dp)
+                .fillMaxWidth()
+                .constrainAs(bottomBar) {
+                    bottom.linkTo(parent.bottom)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                },
+            verticalAlignment = Alignment.Top,
+        ) {
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_person),
+                    contentDescription = null,
+                    modifier = Modifier.size(ApplicationUiConst.SizeObject.ICON_SIZE),
+                    tint = PRIMARY
+                ) 
+                SmallLightText(text = "Профиль", color = PRIMARY)
+            }
+
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight()
+                    .clickable {
+                        navController.popBackStack()
+                    },
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_paper),
+                    contentDescription = null,
+                    modifier = Modifier.size(ApplicationUiConst.SizeObject.ICON_SIZE),
+                    tint = PRIMARY_70
+                )
+                SmallLightText(text = "Главня", color = PRIMARY_70)
+            }
+        }
 
 
     }

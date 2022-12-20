@@ -16,6 +16,7 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.Calendar
 
+
 class CreateUserProductViewModel(
     private val navController: NavController,
     private val mainViewModel: MainViewModel
@@ -29,16 +30,14 @@ class CreateUserProductViewModel(
     var description by mutableStateOf("")
     var imageModel by mutableStateOf<String?>(null)
 
-    var selectedImageUri by mutableStateOf<Uri?>(null)
 
-    var openDialogSelectImage by mutableStateOf(false)
     var openDialogSelectCurrency by mutableStateOf(false)
     var openDialogSelectCategory by mutableStateOf(false)
 
 
     fun changeValue(index: Int, value: String){
         when(index){
-            INDEX_PRODUCT_NAME -> productName = value
+            INDEX_PRODUCT_NAME -> if(value.length <= 34) productName = value
             INDEX_PRODUCT_PRICE -> productPrice = value
             INDEX_PRODUCT_GUARANTEE -> guaranteePeriod = value
         }
@@ -68,6 +67,15 @@ class CreateUserProductViewModel(
                 currency = currency
             )
         )
+    }
+
+    fun clear(){
+        productName = ""
+        dateOfBuyProduct = ""
+        category = ""
+        guaranteePeriod = ""
+        productPrice = ""
+        imageModel = ""
     }
 
 }

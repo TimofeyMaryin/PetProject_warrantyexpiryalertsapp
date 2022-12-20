@@ -5,6 +5,7 @@ import android.realproject.warrantyexpiryalertsapp.data.db.product.ProductsUnder
 import android.realproject.warrantyexpiryalertsapp.data.view_model.MainViewModel
 import android.realproject.warrantyexpiryalertsapp.ui.elements.Container
 import android.realproject.warrantyexpiryalertsapp.ui.elements.SmallApplicationHeader
+import android.realproject.warrantyexpiryalertsapp.ui.elements.text.MediumBoldText
 import android.realproject.warrantyexpiryalertsapp.ui.elements.text.SmallLightText
 import android.realproject.warrantyexpiryalertsapp.ui.theme.DANGEROUS
 import android.realproject.warrantyexpiryalertsapp.ui.theme.PRIMARY
@@ -98,7 +99,7 @@ fun DetailsProductFragment(
             item {
                 DetailsItem(
                     titleCategory = "Цена",
-                    content = "${product.productPrice} ${product.currency}",
+                    content = "${viewModel.formatterPrice(product.productPrice)} ${product.currency}",
                     weightForContent = .8f,
                     weightForLine = 2f,
                     weighForTitle = .8f
@@ -113,33 +114,56 @@ fun DetailsProductFragment(
                         modifier = Modifier
                             .clip(RoundedCornerShape(ApplicationUiConst.Rounded.BLOCK))
                             .fillMaxWidth()
+                            .defaultMinSize(minHeight = ApplicationUiConst.SizeObject.HEIGHT_DESCRIPTION_ELEMENT)
                             .background(SURFACE),
                     ) {
-                        val (content, iconEditText) = createRefs()
+                        val (content, iconEditText, emptyDesc) = createRefs()
 
                         SmallLightText(
-                            text = product.addiction ?: "Еще не поздно добавить описание)))",
+                            text = product.addiction ?: "",
                             color = PRIMARY,
                             modifier = Modifier.constrainAs(content){
                                 top.linkTo(parent.top)
                                 start.linkTo(parent.start)
                                 bottom.linkTo(parent.bottom)
                                 end.linkTo(parent.end)
-                            }.background(Color.Red),
-                            textAlign = TextAlign.Center
+                            }.padding(ApplicationUiConst.Padding.BIG),
+                            textAlign = TextAlign.Start
                         )
 
                         IconButton(
                             onClick = { },
-                            modifier = Modifier.constrainAs(iconEditText) {
-                                top.linkTo(parent.top, margin = ApplicationUiConst.Padding.SMALL)
-                                end.linkTo(parent.end, margin = ApplicationUiConst.Padding.SMALL)
-                            }
+                            modifier = Modifier
+                                .constrainAs(iconEditText) {
+                                    top.linkTo(
+                                        parent.top,
+                                        margin = ApplicationUiConst.Padding.NORMAL
+                                    )
+                                    end.linkTo(
+                                        parent.end,
+                                        margin = ApplicationUiConst.Padding.NORMAL
+                                    )
+                                }
+                                .size(ApplicationUiConst.SizeObject.ICON_SIZE)
                         ) {
                             Icon(
                                 painter = painterResource(id = R.drawable.ic_edit_mode),
                                 contentDescription = null,
                                 tint = PRIMARY,
+                                modifier = Modifier.size(ApplicationUiConst.SizeObject.ICON_SIZE)
+                            )
+                        }
+
+                        if(product.addiction == null || product.addiction == ""){
+                            SmallLightText(
+                                text = "Если надо, можешь добавить описание. \b Не забывай про это)",
+                                modifier = Modifier.constrainAs(emptyDesc) {
+                                    top.linkTo(parent.top)
+                                    bottom.linkTo(parent.bottom)
+                                    start.linkTo(parent.start)
+                                    end.linkTo(parent.end)
+                                },
+                                textAlign = TextAlign.Center
                             )
                         }
                     }
@@ -154,7 +178,7 @@ fun DetailsProductFragment(
                     Container {
                         IconButton(onClick = {
                             viewModel.popBackStack()
-                            Toast.makeText(context, "Вы успешнро удалили карточку...", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "Вы успешно удалили карточку...", Toast.LENGTH_SHORT).show()
                             coroutineScope.launch {
                                 viewModel.deleteProduct(product)
                             }
@@ -162,7 +186,8 @@ fun DetailsProductFragment(
                             Icon(
                                 painter = painterResource(id = R.drawable.ic_trash),
                                 contentDescription = null,
-                                tint = DANGEROUS
+                                tint = DANGEROUS,
+                                modifier = Modifier.size(ApplicationUiConst.SizeObject.ICON_SIZE)
                             )
                         }
                     }
@@ -171,7 +196,9 @@ fun DetailsProductFragment(
             }
 
             item {
-                Box(modifier = Modifier.fillMaxWidth().height(300.dp))
+                Box(modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp))
             }
 
         }

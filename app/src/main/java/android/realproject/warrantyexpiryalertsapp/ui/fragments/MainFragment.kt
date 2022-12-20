@@ -19,6 +19,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -76,11 +79,12 @@ fun MainFragment(
                     val isLastEl = viewModel.categoryItemMainFragment.size == it+1
                     Container {
                         CategoryItem(
-                            viewModel.categoryItemMainFragment[it],
+                            categoryItemModel = viewModel.categoryItemMainFragment[it],
                             isLastElement = isLastEl,
                             onClickAction = {
                                 viewModel.navigateToCategoryProduct(it)
-                            }
+                            },
+                            mainViewModel = viewModel
                         )
                     }
                 }
@@ -116,6 +120,7 @@ fun MainFragment(
         }
 
         item {
+            val countAllProduct by remember { mutableStateOf(viewModel.getAllProduct().size) }
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -124,14 +129,23 @@ fun MainFragment(
             ) {
                 // UserProductTextMainFragment()
                 MediumLightText(
-                    text = "Ваши гарантийные товары",
+                    text = "Ваши гарантийные товары ($countAllProduct)",
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = ApplicationUiConst.Padding.LARGE),
                 )
                 for (item in viewModel.getAllProduct()) {
                     Container {
-                        UserProductItem(product = item, modifier = Modifier.clickable{navController.navigate(Screen.ShowDetailsScreen.route)})
+                        UserProductItem(
+                            product = item,
+                            modifier = Modifier.clickable {
+                                navController.currentBackStackEntry?.savedStateHandle?.set(
+                                    key = "item",
+                                    value = item
+                                )
+                                navController.navigate(Screen.ShowDetailsScreen.route)
+                            }
+                        )
                     }
                 }
             }

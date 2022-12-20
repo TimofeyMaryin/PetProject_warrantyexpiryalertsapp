@@ -19,11 +19,11 @@ val ADDITIONALLY_APPLICATION_ITEM = listOf(
 )
 
 val CURRENCY_ITEMS = listOf(
-    CurrencyModel("$", "Доллар"),
-    CurrencyModel("₽", "Рубль"),
-    CurrencyModel("€", "Евро"),
-    CurrencyModel("¥", "Юань"),
-    CurrencyModel("₤", "Фунт"),
+    CurrencyModel("$", "Доллар", R.drawable.usa_flag),
+    CurrencyModel("₽", "Рубль", R.drawable.russia_flag),
+    CurrencyModel("€", "Евро", R.drawable.europ_flag),
+    CurrencyModel("¥", "Юань", R.drawable.japan_flag),
+    CurrencyModel("₤", "Фунт", R.drawable.england_flag),
 )
 
 
@@ -58,23 +58,4 @@ val IMAGE_ARCHIVE = listOf(
     "https://i.pinimg.com/236x/3c/c6/d8/3cc6d8dc97b64df42a3108c48d6304eb.jpg"
 )
 
-//val CAR_IMAGE_ARCHIVE = listOf(
-//    "https://i.pinimg.com/236x/e8/49/b8/e849b8c7d4f36244fca006d589013c09.jpg",
-//    "https://i.pinimg.com/236x/2c/74/e4/2c74e491d30ee58c642ff24ad37a0726.jpg",
-//    "https://i.pinimg.com/236x/2e/94/31/2e9431e9307d0715823e6a4b65998b9e.jpg",
-//    "https://i.pinimg.com/236x/2c/74/e4/2c74e491d30ee58c642ff24ad37a0726.jpg",
-//    "https://i.pinimg.com/236x/ae/f8/b9/aef8b9fd05fcfcbaaa1bd852196c6ce2.jpg",
-//    "https://i.pinimg.com/236x/4a/2c/db/4a2cdbaa8bf25152d4d5b047fddb83b4.jpg",
-//    "https://i.pinimg.com/236x/79/7a/4e/797a4e4523a1ab1190729df6bd94dc13.jpg",
-//    "https://i.pinimg.com/236x/bd/a0/72/bda0720fd4be874b731cd967d813c9be.jpg",
-//    "https://i.pinimg.com/236x/ec/22/48/ec2248092ecc01851b3481395564c68f.jpg",
-//    "https://i.pinimg.com/236x/ea/2f/0c/ea2f0c7a70cdadaa12eb6a7ab2647906.jpg",
-//)
-//
-//val BUSINESS_IMAGE_ARCHIVE = listOf(
-//    "https://i.pinimg.com/564x/e6/68/8f/e6688f4eaec9de6db74b9dd19b8b3745.jpg",
-//    "https://i.pinimg.com/236x/59/1d/a6/591da6d4176c1639176245e3256289c0.jpg",
-//    "https://i.pinimg.com/236x/c3/be/fc/c3befc7e936594ed41ae680367e3d097.jpg",
-//    "https://i.pinimg.com/236x/3c/c6/d8/3cc6d8dc97b64df42a3108c48d6304eb.jpg"
-//)
 

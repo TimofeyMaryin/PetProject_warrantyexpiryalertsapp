@@ -5,7 +5,6 @@ import android.realproject.warrantyexpiryalertsapp.data.view_model.CreateUserPro
 import android.realproject.warrantyexpiryalertsapp.data.view_model.MainViewModel
 import android.realproject.warrantyexpiryalertsapp.ui.elements.animation.TransitionUnderFragment
 import android.realproject.warrantyexpiryalertsapp.ui.fragments.*
-import android.realproject.warrantyexpiryalertsapp.utils.ADDITIONALLY_APPLICATION_ITEM
 import android.realproject.warrantyexpiryalertsapp.utils.PRODUCT_ITEM_ARGUMENT
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
@@ -31,12 +30,14 @@ fun ApplicationNavHost(
             }
         }
 
-        composable(Screen.CreateProductScreen.route) {
+        composable("${Screen.CreateProductScreen.route}/{category_item}") {
+            val categoryIndex = it.arguments?.getString("category_item", "-1")
             TransitionUnderFragment {
                 CreateProductFragment(
                     navController = navController,
                     viewModel = createUserProductViewModel,
-                    mainViewModel = mainViewModel
+                    mainViewModel = mainViewModel,
+                    category = categoryIndex!!
                 )
             }
         }
@@ -56,7 +57,7 @@ fun ApplicationNavHost(
         // Фрагменты, нуждающиеся в дип линках(аргументах)
 
         composable("${Screen.CategoryProductScreen.route}/{category}") {
-            val category = it.arguments?.getString("category", "b")
+            val category = it.arguments?.getString("category", "-1")
 
             TransitionUnderFragment {
                 FilterByCategoryFragment(

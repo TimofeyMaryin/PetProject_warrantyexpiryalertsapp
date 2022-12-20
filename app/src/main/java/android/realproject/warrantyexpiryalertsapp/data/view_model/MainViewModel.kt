@@ -72,6 +72,23 @@ class MainViewModel(
     fun checkTimeOutWarranty(dateOfBuyProduct: String, guaranteePeriod: String): String{
         return "00/00/2000"
     }
+    fun navigateWithArgument(route: String, argument: String){
+        navController.navigate("$route/$argument")
+    }
 
     fun popBackStack() = navController.popBackStack()
+
+
+    fun formatterPrice(price: String): String {
+        var result = ""
+        val revPrice = price.reversed()
+        for (i in revPrice.indices) {
+            if(i % 3 == 0 && i > 2){
+                result += " "
+            }
+            result += revPrice[i].toString()
+        }
+
+        return result.reversed()
+    }
 }

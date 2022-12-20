@@ -48,6 +48,9 @@ object ApplicationUiConst {
         val HEIGHT_HEADER = 80.dp
         val IMAGE_SIZE = 100.dp
         val HEIGHT_ALERT_ELEMENT = 50.dp
+        val HEIGHT_DESCRIPTION_ELEMENT = 150.dp
+        val HEIGHT_CURRENCY_ELEMENT = 52.dp
+        val SIZE_COUNTER = 32.dp
     }
 
 }

@@ -104,7 +104,7 @@ fun FilterByCategoryFragment(
                     text = "Ну ничего не страшно, давай создадим",
                     textAlign = TextAlign.Center
                 )
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = { viewModel.navigateWithArgument(Screen.CreateProductScreen.route, category) }) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_add_circle),
                         contentDescription = null,

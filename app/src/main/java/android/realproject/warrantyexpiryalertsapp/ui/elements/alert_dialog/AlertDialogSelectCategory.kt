@@ -39,7 +39,7 @@ fun AlertDialogSelectCategory(
                 contentAlignment = Alignment.Center
             ) {
                 Row(
-                    modifier = Modifier.fillMaxWidth(.97f),
+                    modifier = Modifier.fillMaxWidth(.8f),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {

@@ -3,7 +3,6 @@ package android.realproject.warrantyexpiryalertsapp.ui.fragments
 import android.app.DatePickerDialog
 import android.icu.util.Calendar
 import android.realproject.warrantyexpiryalertsapp.R
-import android.realproject.warrantyexpiryalertsapp.data.db.product.ProductsUnderWarrantyEntity
 import android.realproject.warrantyexpiryalertsapp.data.navigation.Screen
 import android.realproject.warrantyexpiryalertsapp.data.view_model.CreateUserProductViewModel
 import android.realproject.warrantyexpiryalertsapp.data.view_model.MainViewModel
@@ -11,12 +10,10 @@ import android.realproject.warrantyexpiryalertsapp.ui.elements.ApplicationTextFi
 import android.realproject.warrantyexpiryalertsapp.ui.elements.Container
 import android.realproject.warrantyexpiryalertsapp.ui.elements.SmallApplicationHeader
 import android.realproject.warrantyexpiryalertsapp.ui.elements.alert_dialog.AlertDialogSelectCategory
-import android.realproject.warrantyexpiryalertsapp.ui.elements.alert_dialog.AlertSelectWayGetImage
 import android.realproject.warrantyexpiryalertsapp.ui.elements.alert_dialog.DialogSelectCurrency
 import android.realproject.warrantyexpiryalertsapp.ui.elements.text.MediumBoldText
 import android.realproject.warrantyexpiryalertsapp.ui.elements.text.SmallLightText
 import android.realproject.warrantyexpiryalertsapp.ui.theme.BACKGROUND
-import android.realproject.warrantyexpiryalertsapp.ui.theme.PRIMARY_70
 import android.realproject.warrantyexpiryalertsapp.ui.theme.SECONDARY
 import android.realproject.warrantyexpiryalertsapp.ui.theme.SURFACE
 import android.realproject.warrantyexpiryalertsapp.utils.ApplicationUiConst
@@ -25,10 +22,6 @@ import android.realproject.warrantyexpiryalertsapp.utils.INDEX_PRODUCT_NAME
 import android.realproject.warrantyexpiryalertsapp.utils.INDEX_PRODUCT_PRICE
 import android.util.Log
 import android.widget.DatePicker
-import android.widget.Toast
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.PickVisualMediaRequest
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -60,11 +53,13 @@ fun CreateProductFragment(
     navController: NavController,
     viewModel: CreateUserProductViewModel,
     mainViewModel: MainViewModel,
+    category: String
 ){
 
     val generateRandomNum by remember { mutableStateOf(Random.nextInt(0, 9999)) }
     val context = LocalContext.current
 
+    if(category != "-1") viewModel.category = category
 
     val coroutineScope = rememberCoroutineScope()
 
@@ -156,7 +151,6 @@ fun CreateProductFragment(
 
              item {
                  Container {
-
                      ApplicationTextField(
                          value = viewModel.category,
                          placeHolder = "Выбери категорию",
@@ -272,11 +266,12 @@ fun CreateProductFragment(
                          Button(
                              onClick = {
                                  Log.e("CreateProductFragment", "imageModel: ${ viewModel.imageModel}", )
-                                coroutineScope.launch {
-                                    viewModel.createCard()
-                                }
+                                 coroutineScope.launch {
+                                     viewModel.createCard()
+                                     viewModel.clear()
+                                 }
                                  navController.navigate(Screen.MainScreen.route)
-                                 Toast.makeText(context, "Вы создали первую карточку, поздравляю вас!!", Toast.LENGTH_SHORT).show()
+
                              },
                              modifier = Modifier.fillMaxWidth(),
                              colors = ButtonDefaults.buttonColors(

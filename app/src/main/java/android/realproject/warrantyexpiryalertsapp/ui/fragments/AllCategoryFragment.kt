@@ -41,7 +41,7 @@ fun AllCategoryFragment(
         LazyVerticalGrid(columns = GridCells.Fixed(3)) {
             items(viewModel.allCategoryItem.size) {
                 Container {
-                    CategoryItem(categoryItemModel = viewModel.allCategoryItem[it]) {
+                    CategoryItem(categoryItemModel = viewModel.allCategoryItem[it], mainViewModel = viewModel) {
                         viewModel.navigateToCategoryProduct(it, false)
                     }
                 }

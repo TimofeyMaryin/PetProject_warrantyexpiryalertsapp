@@ -85,7 +85,7 @@ private fun HeaderContent(
             horizontalArrangement = Arrangement.Center
         ) {
             IconButton(onClick = {
-                navController.navigate(Screen.CreateProductScreen.route)
+                viewModel.navigateWithArgument(Screen.CreateProductScreen.route, "-1")
             }) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_add_circle),
