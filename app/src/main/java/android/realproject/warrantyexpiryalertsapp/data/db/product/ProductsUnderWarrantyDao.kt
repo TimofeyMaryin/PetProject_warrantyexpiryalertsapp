@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 
 
 @Dao
@@ -20,5 +21,9 @@ interface ProductsUnderWarrantyDao {
 
     @Query("select * from productsunderwarrantyentity where category = :category")
     fun getProductByCategory(category: String): MutableList<ProductsUnderWarrantyEntity>
+
+
+    @Update
+    suspend fun updateProductElement(product: ProductsUnderWarrantyEntity)
 
 }

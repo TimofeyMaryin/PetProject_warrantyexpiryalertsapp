@@ -9,6 +9,9 @@ import android.realproject.warrantyexpiryalertsapp.data.db.user_info.UserEntity
 import android.realproject.warrantyexpiryalertsapp.data.db.user_info.UserImpl
 import android.realproject.warrantyexpiryalertsapp.data.navigation.Screen
 import android.realproject.warrantyexpiryalertsapp.model.CategoryItemModel
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 
@@ -24,6 +27,7 @@ class MainViewModel(
     override suspend fun insertProduct(product: ProductsUnderWarrantyEntity) = productDao.insertProduct(product)
     override suspend fun deleteProduct(product: ProductsUnderWarrantyEntity) = productDao.deleteProduct(product = product)
     override fun getProductByCategory(category: String): MutableList<ProductsUnderWarrantyEntity> = productDao.getProductByCategory(category)
+    override suspend fun updateProductElement(product: ProductsUnderWarrantyEntity) = productDao.updateProductElement(product)
 
     override suspend fun insertUser(user: UserEntity) = userDao.insertUser(user)
     override suspend fun updateUserInfo(user: UserEntity) = userDao.updateUserInfo(user)
@@ -90,5 +94,18 @@ class MainViewModel(
         }
 
         return result.reversed()
+    }
+
+
+    var openAlertEditDesc by mutableStateOf(false)
+
+    fun setHeightAlert(text: String): Float {
+        return when (text.length) {
+            in 0 until 20 -> .6f
+            in 20 until 40 -> .75f
+            in 40 until 60 -> .9f
+            else -> 1f
+
+        }
     }
 }

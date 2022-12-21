@@ -5,6 +5,7 @@ import android.realproject.warrantyexpiryalertsapp.data.view_model.CreateUserPro
 import android.realproject.warrantyexpiryalertsapp.data.view_model.MainViewModel
 import android.realproject.warrantyexpiryalertsapp.ui.elements.animation.TransitionUnderFragment
 import android.realproject.warrantyexpiryalertsapp.ui.fragments.*
+import android.realproject.warrantyexpiryalertsapp.utils.APPLE_CATEGORY
 import android.realproject.warrantyexpiryalertsapp.utils.PRODUCT_ITEM_ARGUMENT
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
@@ -84,12 +85,14 @@ fun ApplicationNavHost(
             }
         }
 
-        composable(Screen.SelectImageFromArchiveScreen.route) {
-
+        composable("${Screen.SelectImageFromArchiveScreen.route}/{category}") {
+            val category = it.arguments?.getString("category",  APPLE_CATEGORY)
             TransitionUnderFragment {
                 SelectImageFromArchiveFragment(
                     viewModel = createUserProductViewModel,
-                    navController = navController
+                    navController = navController,
+                    category = category!!,
+                    mainViewModel = mainViewModel
                 )
             }
         }
@@ -100,6 +103,12 @@ fun ApplicationNavHost(
 
             TransitionUnderFragment {
                 DetailsProductFragment(viewModel = mainViewModel, product = item)
+            }
+        }
+
+        composable(Screen.SelectImageCategory.route){
+            TransitionUnderFragment {
+                PhotoCategoryFragment(navController = navController)
             }
         }
 

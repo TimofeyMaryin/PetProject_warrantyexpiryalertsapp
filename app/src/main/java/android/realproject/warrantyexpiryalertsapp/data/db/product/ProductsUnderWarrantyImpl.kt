@@ -8,5 +8,6 @@ interface ProductsUnderWarrantyImpl {
     suspend fun insertProduct(product: ProductsUnderWarrantyEntity)
     suspend fun deleteProduct(product: ProductsUnderWarrantyEntity)
     fun getProductByCategory(category: String): MutableList<ProductsUnderWarrantyEntity>
+    suspend fun updateProductElement(product: ProductsUnderWarrantyEntity)
 
 }

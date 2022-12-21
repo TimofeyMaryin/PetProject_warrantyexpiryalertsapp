@@ -26,4 +26,5 @@ sealed class Screen(val route: String){
 
     object SelectImageFromArchiveScreen: Screen(route = "select_image_from_archive_screen")
     object ShowDetailsScreen: Screen(route = "show_details_screen")
+    object SelectImageCategory: Screen(route = "select_image_category")
 }

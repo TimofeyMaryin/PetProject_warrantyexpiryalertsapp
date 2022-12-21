@@ -217,7 +217,7 @@ fun CreateProductFragment(
                          modifier = Modifier
                              .fillMaxWidth()
                              .clickable {
-                                 navController.navigate(Screen.SelectImageFromArchiveScreen.route)
+                                 navController.navigate(Screen.SelectImageCategory.route)
                              }
                              .height(ApplicationUiConst.SizeObject.HEIGHT_CARD)
                              .border(
@@ -259,8 +259,7 @@ fun CreateProductFragment(
                      viewModel.guaranteePeriod != ""&&
                      viewModel.dateOfBuyProduct != "" &&
                      viewModel.category != "" &&
-                     viewModel.productName != "" &&
-                     viewModel.imageModel != null
+                     viewModel.productName != ""
                  ) {
                      Container {
                          Button(

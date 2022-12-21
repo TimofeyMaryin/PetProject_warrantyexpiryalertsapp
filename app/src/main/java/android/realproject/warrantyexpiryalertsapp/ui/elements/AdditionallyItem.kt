@@ -29,7 +29,7 @@ fun AdditionallyItem(
     ConstraintLayout(
         modifier = Modifier
             .clip(RoundedCornerShape(ApplicationUiConst.Rounded.SMALL))
-            .fillMaxWidth(.85f)
+            .fillMaxWidth()
             .height(130.dp)
             .background(SURFACE)
             .clickable { transition() }

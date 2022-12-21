@@ -5,6 +5,7 @@ import android.realproject.warrantyexpiryalertsapp.data.db.product.ProductsUnder
 import android.realproject.warrantyexpiryalertsapp.data.view_model.MainViewModel
 import android.realproject.warrantyexpiryalertsapp.ui.elements.Container
 import android.realproject.warrantyexpiryalertsapp.ui.elements.SmallApplicationHeader
+import android.realproject.warrantyexpiryalertsapp.ui.elements.alert_dialog.AlertDialogEditDesc
 import android.realproject.warrantyexpiryalertsapp.ui.elements.text.MediumBoldText
 import android.realproject.warrantyexpiryalertsapp.ui.elements.text.SmallLightText
 import android.realproject.warrantyexpiryalertsapp.ui.theme.DANGEROUS
@@ -17,6 +18,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.AlertDialog
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.icons.Icons
@@ -105,6 +107,16 @@ fun DetailsProductFragment(
                     weighForTitle = .8f
                 )
             }
+
+            item {
+                DetailsItem(
+                    titleCategory = "Категория",
+                    content = product.category,
+                    weighForTitle = 1f,
+                    weightForLine = 2f,
+                    weightForContent =2f
+                )
+            }
             item {
                 SmallLightText(text = "Дополнительная информация", color = PRIMARY_70)
             }
@@ -122,17 +134,21 @@ fun DetailsProductFragment(
                         SmallLightText(
                             text = product.addiction ?: "",
                             color = PRIMARY,
-                            modifier = Modifier.constrainAs(content){
-                                top.linkTo(parent.top)
-                                start.linkTo(parent.start)
-                                bottom.linkTo(parent.bottom)
-                                end.linkTo(parent.end)
-                            }.padding(ApplicationUiConst.Padding.BIG),
+                            modifier = Modifier
+                                .constrainAs(content) {
+                                    top.linkTo(parent.top)
+                                    start.linkTo(parent.start)
+                                    bottom.linkTo(parent.bottom)
+                                    end.linkTo(parent.end)
+                                }
+                                .padding(ApplicationUiConst.Padding.BIG),
                             textAlign = TextAlign.Start
                         )
 
                         IconButton(
-                            onClick = { },
+                            onClick = {
+                                      viewModel.openAlertEditDesc = true
+                            },
                             modifier = Modifier
                                 .constrainAs(iconEditText) {
                                     top.linkTo(
@@ -203,6 +219,24 @@ fun DetailsProductFragment(
 
         }
 
+    }
+
+    if (viewModel.openAlertEditDesc) {
+        AlertDialog(
+            onDismissRequest = { viewModel.openAlertEditDesc = false },
+            buttons = {
+                AlertDialogEditDesc(
+                    viewModel = viewModel,
+                    productElement = product!!
+                )
+            },
+            modifier = Modifier
+                .fillMaxHeight(viewModel.setHeightAlert(product?.addiction ?: ""))
+                .clip(RoundedCornerShape(ApplicationUiConst.Rounded.SMALL)),
+            title = {
+                SmallLightText(text = "Давай изменим эту белеберду")
+            }
+        )
     }
 }
 

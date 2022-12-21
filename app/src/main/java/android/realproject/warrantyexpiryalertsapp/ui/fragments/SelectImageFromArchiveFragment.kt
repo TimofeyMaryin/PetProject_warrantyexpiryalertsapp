@@ -2,7 +2,9 @@ package android.realproject.warrantyexpiryalertsapp.ui.fragments
 
 import android.app.Application
 import android.media.ImageReader
+import android.realproject.warrantyexpiryalertsapp.data.navigation.Screen
 import android.realproject.warrantyexpiryalertsapp.data.view_model.CreateUserProductViewModel
+import android.realproject.warrantyexpiryalertsapp.data.view_model.MainViewModel
 import android.realproject.warrantyexpiryalertsapp.ui.elements.Container
 import android.realproject.warrantyexpiryalertsapp.ui.elements.LoadingShimmerEffect
 import android.realproject.warrantyexpiryalertsapp.ui.elements.SmallApplicationHeader
@@ -46,11 +48,24 @@ import kotlinx.coroutines.launch
 @Composable
 fun SelectImageFromArchiveFragment(
     viewModel: CreateUserProductViewModel,
+    mainViewModel: MainViewModel,
     navController: NavController,
-
+    category: String
 ) {
     val bottomSheetScaffoldState = rememberBottomSheetScaffoldState(bottomSheetState = BottomSheetState(BottomSheetValue.Collapsed))
     val coroutineScope = rememberCoroutineScope()
+
+    val listOfImage by remember {
+        mutableStateOf(
+            when(category){
+                APPLE_CATEGORY -> PHOTO_CATEGORY[0]
+                CAR_CATEGORY -> PHOTO_CATEGORY[1]
+                MICRO_ELECTRONICS_CATEGORY -> PHOTO_CATEGORY[2]
+                FOR_CHILD_CATEGORY -> PHOTO_CATEGORY[3]
+                else -> PHOTO_CATEGORY[0]
+            }
+        )
+    }
 
     BottomSheetScaffold(
         scaffoldState = bottomSheetScaffoldState,
@@ -69,7 +84,9 @@ fun SelectImageFromArchiveFragment(
                 AsyncImage(
                     model = viewModel.imageModel,
                     contentDescription =  null,
-                    modifier = Modifier.fillMaxWidth().height(300.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(300.dp),
                     contentScale = ContentScale.Crop
                 )
 
@@ -100,7 +117,7 @@ fun SelectImageFromArchiveFragment(
                             coroutineScope.launch {
                                 bottomSheetScaffoldState.bottomSheetState.collapse()
                             }
-                            navController.popBackStack()
+                            mainViewModel.navigateWithArgument(Screen.CreateProductScreen.route, "-1")
                         },
                         colors = ButtonDefaults.buttonColors(
                             backgroundColor = SECONDARY,
@@ -123,8 +140,8 @@ fun SelectImageFromArchiveFragment(
             }
             val (header, content) = createRefs()
             SmallApplicationHeader(
-                titlePreviousFragment = "Создать",
-                titleCurrentFragment = "Выбор изображения",
+                titlePreviousFragment = "Выбор фото",
+                titleCurrentFragment = category,
                 navController = navController,
                 modifier = Modifier.constrainAs(header) {
                     top.linkTo(parent.top)
@@ -141,7 +158,7 @@ fun SelectImageFromArchiveFragment(
                         end.linkTo(parent.end)
                     }
                 ){
-                    items(IMAGE_ARCHIVE.size) {
+                    items(listOfImage.listImage.size) {
                         Container {
                             Box(
                                 modifier = Modifier
@@ -150,11 +167,11 @@ fun SelectImageFromArchiveFragment(
                                         RoundedCornerShape(ApplicationUiConst.Rounded.VERY_SMALL),
                                     )
                                     .clickable {
-                                        viewModel.imageModel = IMAGE_ARCHIVE[it]
+                                        viewModel.imageModel = listOfImage.listImage[it]
                                         //navController.popBackStack()
 
                                         coroutineScope.launch {
-                                            if(bottomSheetScaffoldState.bottomSheetState.isCollapsed) {
+                                            if (bottomSheetScaffoldState.bottomSheetState.isCollapsed) {
                                                 bottomSheetScaffoldState.bottomSheetState.expand()
                                             } else {
                                                 bottomSheetScaffoldState.bottomSheetState.collapse()
@@ -165,7 +182,7 @@ fun SelectImageFromArchiveFragment(
                                 contentAlignment = Alignment.Center,
                             ) {
                                 SubcomposeAsyncImage(
-                                    model = IMAGE_ARCHIVE[it],
+                                    model = listOfImage.listImage[it],
                                     contentDescription = null,
                                     modifier = Modifier.fillMaxSize(),
                                     contentScale = ContentScale.Crop

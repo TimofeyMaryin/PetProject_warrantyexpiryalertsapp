@@ -141,14 +141,14 @@ fun ProfileUserFragment(
 
         Row(
             modifier = Modifier
-                .height(100.dp)
+                .height(60.dp)
                 .fillMaxWidth()
                 .constrainAs(bottomBar) {
                     bottom.linkTo(parent.bottom)
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
                 },
-            verticalAlignment = Alignment.Top,
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Column(
                 modifier = Modifier

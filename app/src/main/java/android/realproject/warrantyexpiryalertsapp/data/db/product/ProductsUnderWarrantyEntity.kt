@@ -30,7 +30,7 @@ data class ProductsUnderWarrantyEntity(
     @ColumnInfo val imageSrc: String,
     @ColumnInfo val guaranteePeriod: String,
     @ColumnInfo val category: String,
-    @ColumnInfo val addiction: String? = null,
+    @ColumnInfo var addiction: String? = null,
     @ColumnInfo val dateOfPurchaseOfTheProduct: String,
     @ColumnInfo val productPrice: String,
     @ColumnInfo val currency: String
