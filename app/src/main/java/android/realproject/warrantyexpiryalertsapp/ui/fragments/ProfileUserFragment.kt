@@ -33,6 +33,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import coil.compose.AsyncImage
 
 @Composable
 fun ProfileUserFragment(
@@ -54,11 +55,11 @@ fun ProfileUserFragment(
             viewModel.getUser() != null &&
             viewModel.getUser().avatar != null
         ) {
-            Image(
-                bitmap = viewModel.getUser().avatar!!.asImageBitmap(),
+            AsyncImage(
+                model = viewModel.getUser().headerImage,
                 contentDescription = null,
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxWidth().height(ApplicationUiConst.SizeObject.HEIGHT_CARD)
                     .constrainAs(cardImage) {
                         top.linkTo(parent.top)
                         start.linkTo(parent.start)
@@ -78,8 +79,8 @@ fun ProfileUserFragment(
                     },
                 contentAlignment = Alignment.Center,
             ) {
-                Image(
-                    bitmap = viewModel.getUser().avatar!!.asImageBitmap(),
+                AsyncImage(
+                    model = viewModel.getUser().avatar,
                     contentDescription = null,
                     modifier = Modifier.fillMaxSize(),
                     contentScale = ContentScale.Crop

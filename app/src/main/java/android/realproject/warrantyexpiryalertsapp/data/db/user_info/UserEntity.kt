@@ -26,6 +26,7 @@ data class UserEntity(
     @ColumnInfo var firstName: String? = null,
     @ColumnInfo var secondName: String? = null,
     @ColumnInfo val dateRegister: String? = null,
-    @Embedded val avatar: Bitmap? = null,
-    @ColumnInfo val status: String? = null
+    @ColumnInfo var avatar: String? = null,
+    @ColumnInfo var status: String? = null,
+    @ColumnInfo var headerImage: String? = null
 )

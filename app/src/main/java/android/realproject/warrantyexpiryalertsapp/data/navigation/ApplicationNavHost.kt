@@ -3,11 +3,18 @@ package android.realproject.warrantyexpiryalertsapp.data.navigation
 import android.realproject.warrantyexpiryalertsapp.data.db.product.ProductsUnderWarrantyEntity
 import android.realproject.warrantyexpiryalertsapp.data.view_model.CreateUserProductViewModel
 import android.realproject.warrantyexpiryalertsapp.data.view_model.MainViewModel
+import android.realproject.warrantyexpiryalertsapp.login_boarding.AcquaintanceWithApplication
+import android.realproject.warrantyexpiryalertsapp.login_boarding.AcquaintanceWithApplicationFragment
+import android.realproject.warrantyexpiryalertsapp.login_boarding.AcquaintanceWithApplicationViewModel
+import android.realproject.warrantyexpiryalertsapp.login_boarding.UserPictureFragment
 import android.realproject.warrantyexpiryalertsapp.ui.elements.animation.TransitionUnderFragment
 import android.realproject.warrantyexpiryalertsapp.ui.fragments.*
 import android.realproject.warrantyexpiryalertsapp.utils.APPLE_CATEGORY
 import android.realproject.warrantyexpiryalertsapp.utils.PRODUCT_ITEM_ARGUMENT
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -16,9 +23,30 @@ import androidx.navigation.compose.composable
 fun ApplicationNavHost(
     navController: NavHostController,
     mainViewModel: MainViewModel,
-    createUserProductViewModel: CreateUserProductViewModel
+    createUserProductViewModel: CreateUserProductViewModel,
+    acquaintanceWithApplicationViewModel: AcquaintanceWithApplicationViewModel
 ) {
-    NavHost(navController = navController, startDestination = Screen.MainScreen.route){
+
+    val currentRoute by remember {
+        mutableStateOf(
+            if(mainViewModel.getUser() != null) {
+                if(mainViewModel.getUser().firstName != null) {
+                    Screen.MainScreen.route
+                } else {
+                    Screen.OnBoarding.route
+                }
+            } else {
+                Screen.OnBoarding.route
+            }
+
+        )
+    }
+    NavHost(navController = navController, startDestination = currentRoute){
+        composable(Screen.OnBoarding.route){
+            AcquaintanceWithApplication(viewModel = acquaintanceWithApplicationViewModel, mainViewModel = mainViewModel, navController = navController)
+        }
+
+
         // Фрагменты не нуждающиеся в дип линках
         composable(Screen.MainScreen.route){
 
@@ -109,6 +137,27 @@ fun ApplicationNavHost(
         composable(Screen.SelectImageCategory.route){
             TransitionUnderFragment {
                 PhotoCategoryFragment(navController = navController)
+            }
+        }
+
+        composable("${Screen.SelectUserPhoto.route}/{is_avatar}") {
+            val isAvatar = it.arguments?.getString("is_avatar", "1")
+            val currentTitleFragment by remember {
+                mutableStateOf(
+                    if(isAvatar != "0") {
+                        "Avatar"
+                    } else {
+                        "Header"
+                    }
+                )
+            }
+            TransitionUnderFragment {
+                UserPictureFragment(
+                    navController = navController,
+                    aViewModel = acquaintanceWithApplicationViewModel,
+                    forAvatarImage = isAvatar!!,
+                    titleCurrentFragment = currentTitleFragment
+                )
             }
         }
 

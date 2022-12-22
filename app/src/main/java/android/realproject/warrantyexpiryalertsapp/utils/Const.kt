@@ -115,3 +115,8 @@ val PHOTO_CATEGORY = listOf(
 )
 
 
+
+val LIST_OF_ICON_BOARDING = listOf(
+    R.drawable.icon_one
+)
+

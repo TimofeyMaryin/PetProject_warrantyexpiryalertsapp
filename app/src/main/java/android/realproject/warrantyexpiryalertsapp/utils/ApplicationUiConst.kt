@@ -1,6 +1,8 @@
 package android.realproject.warrantyexpiryalertsapp.utils
 
 import android.realproject.warrantyexpiryalertsapp.R
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
@@ -52,6 +54,18 @@ object ApplicationUiConst {
         val HEIGHT_CURRENCY_ELEMENT = 52.dp
         val SIZE_COUNTER = 32.dp
         val HEIGHT_EDIT_TEXT = 30.dp
+        val SIZE_ICON_BOARDING = 130.dp
+    }
+
+    object Gradient {
+        val cheapSugar = Brush.verticalGradient(
+            0.0f to Color(0xFF5E5368),
+            1f to Color.Black
+        )
+        val maroon = Brush.verticalGradient(
+            0.0f to Color(0xFFD58936),
+            1f to Color(0xFF69140E)
+        )
     }
 
 }

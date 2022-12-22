@@ -7,6 +7,7 @@ import android.realproject.warrantyexpiryalertsapp.data.view_model.CreateUserPro
 import android.realproject.warrantyexpiryalertsapp.data.view_model.MainViewModel
 import android.realproject.warrantyexpiryalertsapp.data.view_model.factory.CreateUserProductViewModelFactory
 import android.realproject.warrantyexpiryalertsapp.data.view_model.factory.MainViewModelFactory
+import android.realproject.warrantyexpiryalertsapp.login_boarding.AcquaintanceWithApplicationViewModel
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -53,11 +54,13 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                     )
+                    val acquaintanceWithApplicationViewModel: AcquaintanceWithApplicationViewModel by viewModels()
 
                     ApplicationNavHost(
                         navController = navController,
                         mainViewModel = mainViewModel,
-                        createUserProductViewModel = createUserProductViewModel
+                        createUserProductViewModel = createUserProductViewModel,
+                        acquaintanceWithApplicationViewModel = acquaintanceWithApplicationViewModel
                     )
 
 

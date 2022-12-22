@@ -4,7 +4,10 @@ import android.realproject.warrantyexpiryalertsapp.R
 import android.realproject.warrantyexpiryalertsapp.data.db.product.ProductsUnderWarrantyEntity
 import android.realproject.warrantyexpiryalertsapp.data.navigation.Screen
 import android.realproject.warrantyexpiryalertsapp.data.view_model.MainViewModel
+import android.realproject.warrantyexpiryalertsapp.login_boarding.AcquaintanceWithApplicationViewModel
+import android.realproject.warrantyexpiryalertsapp.model.PhotoCategoryModel
 import android.realproject.warrantyexpiryalertsapp.ui.elements.Container
+import android.realproject.warrantyexpiryalertsapp.ui.elements.LoadingShimmerEffect
 import android.realproject.warrantyexpiryalertsapp.ui.elements.SmallApplicationHeader
 import android.realproject.warrantyexpiryalertsapp.ui.elements.UserProductItem
 import android.realproject.warrantyexpiryalertsapp.ui.elements.text.LargeBoldText
@@ -12,21 +15,28 @@ import android.realproject.warrantyexpiryalertsapp.ui.elements.text.SmallLightTe
 import android.realproject.warrantyexpiryalertsapp.ui.theme.SECONDARY
 import android.realproject.warrantyexpiryalertsapp.ui.theme.SURFACE
 import android.realproject.warrantyexpiryalertsapp.utils.ApplicationUiConst
+import android.service.autofill.OnClickAction
 import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavController
+import coil.compose.AsyncImagePainter
+import coil.compose.SubcomposeAsyncImage
+import coil.compose.SubcomposeAsyncImageContent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -115,3 +125,5 @@ fun FilterByCategoryFragment(
         }
     }
 }
+
+

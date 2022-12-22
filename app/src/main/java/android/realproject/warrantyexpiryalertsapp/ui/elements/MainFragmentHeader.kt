@@ -139,7 +139,7 @@ private fun UserInfoHeader(
                      viewModel.getUser() != null &&
                      viewModel.getUser().firstName != null &&
                      viewModel.getUser().secondName != null
-                 ) "{viewModel.getUser().secondName} {viewModel.getUser().secondName}" else "user"
+                 ) "${viewModel.getUser().secondName} ${viewModel.getUser().secondName}" else "user"
              )
             SmallLightText(
                 text = "Random phrase"
