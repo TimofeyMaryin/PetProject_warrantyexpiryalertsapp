@@ -21,7 +21,7 @@ fun AvatarUser(
     viewModel: MainViewModel,
     modifier: Modifier
 ) {
-    if(viewModel.getUser() != null){
+    if(viewModel.getUser() != null && viewModel.getUser().avatar != null){
         Box(
             modifier = Modifier
                 .size(ApplicationUiConst.SizeObject.AVATAR_SIZE)

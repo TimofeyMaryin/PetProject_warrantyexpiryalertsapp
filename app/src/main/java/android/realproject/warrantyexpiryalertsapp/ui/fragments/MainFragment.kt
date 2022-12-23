@@ -62,8 +62,8 @@ fun MainFragment(
                 CardHintElement(modifier = Modifier.constrainAs(cardHint) {
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
-                    top.linkTo(header.bottom, margin = (-50).dp)
-                })
+                    top.linkTo(header.bottom, margin = (-20).dp)
+                }, viewModel = viewModel)
 
             }
 

@@ -2,9 +2,12 @@ package android.realproject.warrantyexpiryalertsapp.ui.fragments
 
 import android.app.Application
 import android.realproject.warrantyexpiryalertsapp.R
+import android.realproject.warrantyexpiryalertsapp.data.db.user_info.UserEntity
 import android.realproject.warrantyexpiryalertsapp.data.navigation.Screen
 import android.realproject.warrantyexpiryalertsapp.data.view_model.MainViewModel
+import android.realproject.warrantyexpiryalertsapp.login_boarding.AcquaintanceWithApplicationViewModel
 import android.realproject.warrantyexpiryalertsapp.ui.elements.ApplicationTextField
+import android.realproject.warrantyexpiryalertsapp.ui.elements.alert_dialog.AlertChangeUserImage
 import android.realproject.warrantyexpiryalertsapp.ui.elements.text.MediumLightText
 import android.realproject.warrantyexpiryalertsapp.ui.elements.text.SmallLightText
 import android.realproject.warrantyexpiryalertsapp.ui.theme.*
@@ -14,10 +17,7 @@ import android.widget.Toast
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.*
@@ -34,11 +34,13 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
+import kotlinx.coroutines.launch
 
 @Composable
 fun ProfileUserFragment(
     viewModel: MainViewModel,
-    navController: NavController
+    navController: NavController,
+    aViewModel: AcquaintanceWithApplicationViewModel,
 ){
     val context = LocalContext.current
     ConstraintLayout(
@@ -52,25 +54,43 @@ fun ProfileUserFragment(
 
 
         if(
-            viewModel.getUser() != null &&
-            viewModel.getUser().avatar != null
+            viewModel.getUser() != null
         ) {
-            AsyncImage(
-                model = viewModel.getUser().headerImage,
-                contentDescription = null,
-                modifier = Modifier
-                    .fillMaxWidth().height(ApplicationUiConst.SizeObject.HEIGHT_CARD)
-                    .constrainAs(cardImage) {
-                        top.linkTo(parent.top)
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                    },
-                contentScale = ContentScale.Crop
-            )
+            // Image for header
+            if(viewModel.getUser().headerImage != null && viewModel.getUser().headerImage != "") {
+                AsyncImage(
+                    model = viewModel.getUser().headerImage,
+                    contentDescription = null,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(ApplicationUiConst.SizeObject.HEIGHT_CARD)
+                        .constrainAs(cardImage) {
+                            top.linkTo(parent.top)
+                            start.linkTo(parent.start)
+                            end.linkTo(parent.end)
+                        },
+                    contentScale = ContentScale.Crop
+                )
+
+            } else {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(PRIMARY_70)
+                        .height(ApplicationUiConst.SizeObject.HEIGHT_CARD)
+                        .constrainAs(cardImage) {
+                            top.linkTo(parent.top)
+                            start.linkTo(parent.start)
+                            end.linkTo(parent.end)
+                    }
+                )
+            }
+            // Avatar
             Box(
                 modifier = Modifier
                     .clip(CircleShape)
-                    .border(BorderStroke(3.dp, BACKGROUND), CircleShape)
+                    .border(BorderStroke(5.dp, BACKGROUND), CircleShape)
+                    .clickable { viewModel.openAlertChangeUserPhoto = true }
                     .size(ApplicationUiConst.SizeObject.AVATAR_SIZE)
                     .constrainAs(avatar) {
                         top.linkTo(cardImage.bottom, margin = (-65).dp)
@@ -79,12 +99,23 @@ fun ProfileUserFragment(
                     },
                 contentAlignment = Alignment.Center,
             ) {
-                AsyncImage(
-                    model = viewModel.getUser().avatar,
-                    contentDescription = null,
-                    modifier = Modifier.fillMaxSize(),
-                    contentScale = ContentScale.Crop
-                )
+                if(viewModel.getUser().avatar != null || viewModel.getUser().avatar != ""){
+                    AsyncImage(
+                        model = viewModel.getUser().avatar,
+                        contentDescription = null,
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.Crop
+                    )
+                } else {
+                    Image(
+                        painter = painterResource(id = R.drawable.default_avatar),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .fillMaxSize(.93f)
+                            .clip(CircleShape),
+                        contentScale = ContentScale.Crop
+                    )
+                }
 
             }
         } else {
@@ -103,6 +134,9 @@ fun ProfileUserFragment(
             Box(
                 modifier = Modifier
                     .clip(CircleShape)
+                    .clickable {
+                        viewModel.openAlertChangeUserPhoto = true
+                    }
                     .background(BACKGROUND)
                     .size(ApplicationUiConst.SizeObject.AVATAR_SIZE)
                     .constrainAs(avatar) {
@@ -138,7 +172,7 @@ fun ProfileUserFragment(
         PrivateUserTextField(modifier = Modifier.constrainAs(textFields) {
             top.linkTo(personData.bottom, margin = ApplicationUiConst.Padding.BIG)
             start.linkTo(parent.start, margin = ApplicationUiConst.Padding.LARGE)
-        })
+        }, viewModel.getUser(), viewModel = viewModel)
 
         Row(
             modifier = Modifier
@@ -187,6 +221,16 @@ fun ProfileUserFragment(
 
 
     }
+    
+    if (viewModel.openAlertChangeUserPhoto){
+        AlertDialog(
+            onDismissRequest = { viewModel.openAlertChangeUserPhoto = false },
+            buttons = {
+                AlertChangeUserImage(navController = navController, viewModel = viewModel, aViewModel = aViewModel)
+            },
+            modifier = Modifier.fillMaxHeight(.6f)
+        )
+    }
 
 }
 
@@ -223,11 +267,13 @@ private fun PrivateUserData(modifier: Modifier, viewModel: MainViewModel) {
 
 @Composable
 private fun PrivateUserTextField(
-    modifier: Modifier
+    modifier: Modifier,
+    userData: UserEntity,
+    viewModel: MainViewModel
 ) {
-    var firstName by remember { mutableStateOf("") }
-    var secondName by remember{mutableStateOf("") }
-
+    var firstName by remember { mutableStateOf(userData.firstName ?: "") }
+    var secondName by remember{mutableStateOf(userData.secondName ?: "") }
+    val coroutineScope = rememberCoroutineScope()
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -235,16 +281,35 @@ private fun PrivateUserTextField(
         ApplicationTextField(
             value = firstName,
             placeHolder = "Введи свое имя",
-            onValueChange = { firstName = it },
+            onValueChange = {
+                firstName = it
+                coroutineScope.launch {
+                    viewModel.updateUserInfo(
+                        user = userData.copy(
+                            firstName = firstName
+                        )
+                    )
+                }
+            },
             icon = R.drawable.ic_pets,
             modifier = Modifier.padding(vertical = ApplicationUiConst.Padding.BIG)
         )
         ApplicationTextField(
             value = secondName,
             placeHolder = "Введи свою фамилию",
-            onValueChange = { secondName = it },
+            onValueChange = {
+                secondName = it
+                coroutineScope.launch {
+                    viewModel.updateUserInfo(
+                        user = userData.copy(
+                            secondName = secondName
+                        )
+                    )
+                }
+            },
             icon = R.drawable.ic_pets,
             modifier = Modifier.padding(vertical = ApplicationUiConst.Padding.BIG)
         )
     }
 }
+

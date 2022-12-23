@@ -55,6 +55,7 @@ object ApplicationUiConst {
         val SIZE_COUNTER = 32.dp
         val HEIGHT_EDIT_TEXT = 30.dp
         val SIZE_ICON_BOARDING = 130.dp
+        val HEIGHT_HINT_CARD = 120.dp
     }
 
     object Gradient {

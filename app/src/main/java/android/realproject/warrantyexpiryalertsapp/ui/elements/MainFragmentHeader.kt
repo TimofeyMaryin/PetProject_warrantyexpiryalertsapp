@@ -13,11 +13,13 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.node.ModifierNodeElement
@@ -120,15 +122,21 @@ private fun UserInfoHeader(
             .height(ApplicationUiConst.SizeObject.CATEGORY_ITEM),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        AvatarUser(
-            viewModel = viewModel,
+        Box(
             modifier = Modifier
-                .height(ApplicationUiConst.SizeObject.AVATAR_SIZE)
-                .weight(1f)
+                .size(ApplicationUiConst.SizeObject.AVATAR_SIZE)
+                .weight(2f)
                 .padding(end = ApplicationUiConst.Padding.NORMAL)
-                .clickable { navController.navigate(Screen.ProfileUser.route) },
+                .clickable { navController.navigate(Screen.ProfileUser.route) }
+                .clip(CircleShape),
+            contentAlignment = Alignment.Center
+        ) {
+            AvatarUser(
+                viewModel = viewModel,
+                modifier = Modifier.fillMaxSize()
+            )
 
-        )
+        }
         Column(
             modifier = Modifier.weight(4f),
             horizontalAlignment = Alignment.Start,
@@ -139,7 +147,7 @@ private fun UserInfoHeader(
                      viewModel.getUser() != null &&
                      viewModel.getUser().firstName != null &&
                      viewModel.getUser().secondName != null
-                 ) "${viewModel.getUser().secondName} ${viewModel.getUser().secondName}" else "user"
+                 ) "${viewModel.getUser().secondName} ${viewModel.getUser().firstName}" else "user"
              )
             SmallLightText(
                 text = "Random phrase"

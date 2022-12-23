@@ -1,14 +1,13 @@
 package android.realproject.warrantyexpiryalertsapp.ui.elements
 
+import android.realproject.warrantyexpiryalertsapp.R
+import android.realproject.warrantyexpiryalertsapp.data.view_model.MainViewModel
 import android.realproject.warrantyexpiryalertsapp.ui.elements.text.MediumBoldText
 import android.realproject.warrantyexpiryalertsapp.ui.elements.text.SmallLightText
 import android.realproject.warrantyexpiryalertsapp.ui.theme.BACKGROUND
 import android.realproject.warrantyexpiryalertsapp.ui.theme.SURFACE
 import android.realproject.warrantyexpiryalertsapp.utils.ApplicationUiConst
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
+import androidx.compose.foundation.*
 import androidx.compose.foundation.gestures.snapping.SnapLayoutInfoProvider
 import androidx.compose.foundation.gestures.snapping.rememberSnapFlingBehavior
 import androidx.compose.foundation.layout.*
@@ -24,17 +23,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import kotlin.random.Random
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun CardHintElement(
-    modifier: Modifier
+    modifier: Modifier,
+    viewModel: MainViewModel
 ) {
     val state = rememberLazyListState()
     val snappingLayout = remember(state) { SnapLayoutInfoProvider(state) }
     val flingBehavior = rememberSnapFlingBehavior(snappingLayout)
+
     LazyRow(
         modifier = Modifier
             .fillMaxWidth()
@@ -43,7 +45,8 @@ fun CardHintElement(
         state = state,
         flingBehavior = flingBehavior
     ) {
-        items(4) {
+
+        items(viewModel.listOfMainHint.size) {
             Box(
                 modifier = Modifier
                     .height(170.dp)
@@ -53,22 +56,39 @@ fun CardHintElement(
             ) {
                 Box(
                     modifier = Modifier
-                        .clip(RoundedCornerShape( ApplicationUiConst.Rounded.BLOCK))
+                        .clip(RoundedCornerShape(ApplicationUiConst.Rounded.BLOCK))
                         .fillMaxWidth(.9f)
+                        .defaultMinSize(minHeight = ApplicationUiConst.SizeObject.HEIGHT_HINT_CARD)
                         .background(BACKGROUND)
-                        .border(BorderStroke(2.dp, SURFACE.copy(1f)), RoundedCornerShape(ApplicationUiConst.Rounded.BLOCK)),
+                        .border(
+                            BorderStroke(2.dp, SURFACE.copy(1f)),
+                            RoundedCornerShape(ApplicationUiConst.Rounded.BLOCK)
+                        ),
                     contentAlignment = Alignment.Center
                 ){
-                    val random by remember {
-                        mutableStateOf(Random.nextInt(4, 23))
-                    }
-                    Column(
-                        modifier = Modifier.fillMaxWidth(.6f).padding(vertical = ApplicationUiConst.Padding.VERY_LARGE),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
+                    Row(
+                        modifier = Modifier.fillMaxSize(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceEvenly
                     ) {
-                        MediumBoldText(text = "Hint №$it")
-                        SmallLightText(text = "qwerty ".repeat(random))
+
+                        Box(modifier = Modifier.fillMaxSize().weight(1f), contentAlignment = Alignment.BottomCenter) {
+                            Image(
+                                painter = painterResource(id = viewModel.listOfMainHint[it].image),
+                                contentDescription = null,
+                                modifier = Modifier.size(120.dp)
+                            )
+                        }
+
+                        Column(
+                            modifier = Modifier
+                                .weight(1f)
+                                .padding(vertical = ApplicationUiConst.Padding.VERY_LARGE),
+                            horizontalAlignment = Alignment.Start,
+                        ) {
+                            MediumBoldText(text = viewModel.listOfMainHint[it].title)
+                            SmallLightText(text = viewModel.listOfMainHint[it].hintText)
+                        }
                     }
                 }
             }

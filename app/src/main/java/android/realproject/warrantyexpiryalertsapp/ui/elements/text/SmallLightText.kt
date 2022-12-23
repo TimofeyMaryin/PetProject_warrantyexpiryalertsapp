@@ -22,5 +22,5 @@ fun SmallLightText(
     modifier = modifier,
     fontWeight = fontWeight,
     color = color,
-    textAlign = textAlign
+    textAlign = textAlign,
 )

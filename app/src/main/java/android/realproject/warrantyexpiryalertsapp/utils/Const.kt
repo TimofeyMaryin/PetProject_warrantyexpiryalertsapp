@@ -3,6 +3,7 @@ package android.realproject.warrantyexpiryalertsapp.utils
 import android.realproject.warrantyexpiryalertsapp.R
 import android.realproject.warrantyexpiryalertsapp.model.AdditionallyApplicationModel
 import android.realproject.warrantyexpiryalertsapp.model.CurrencyModel
+import android.realproject.warrantyexpiryalertsapp.model.MainHintModel
 import android.realproject.warrantyexpiryalertsapp.model.PhotoCategoryModel
 
 const val PRODUCT_ITEM_ARGUMENT = "count_item"
@@ -118,5 +119,16 @@ val PHOTO_CATEGORY = listOf(
 
 val LIST_OF_ICON_BOARDING = listOf(
     R.drawable.icon_one
+)
+
+val LIST_OF_HINT_MODEL = listOf(
+    MainHintModel(R.drawable.icon_one, "1", "qwerty ".repeat(10)),
+    MainHintModel(R.drawable.icon_two, "2", "qwerty ".repeat(6)),
+    MainHintModel(R.drawable.icon_three, "3", "qwerty ".repeat(13)),
+    MainHintModel(R.drawable.icon_two, "4", "qwerty ".repeat(4)),
+    MainHintModel(R.drawable.icon_three, "5", "qwerty ".repeat(18)),
+    MainHintModel(R.drawable.icon_one, "6", "qwerty ".repeat(7)),
+    MainHintModel(R.drawable.icon_two, "7", "qwerty ".repeat(9)),
+
 )
 

@@ -79,7 +79,7 @@ fun ApplicationNavHost(
 
         composable(Screen.ProfileUser.route) {
             TransitionUnderFragment {
-                ProfileUserFragment(navController = navController, viewModel = mainViewModel)
+                ProfileUserFragment(navController = navController, viewModel = mainViewModel, aViewModel = acquaintanceWithApplicationViewModel)
             }
         }
 
@@ -156,7 +156,8 @@ fun ApplicationNavHost(
                     navController = navController,
                     aViewModel = acquaintanceWithApplicationViewModel,
                     forAvatarImage = isAvatar!!,
-                    titleCurrentFragment = currentTitleFragment
+                    titleCurrentFragment = currentTitleFragment,
+                    mainViewModel = mainViewModel
                 )
             }
         }

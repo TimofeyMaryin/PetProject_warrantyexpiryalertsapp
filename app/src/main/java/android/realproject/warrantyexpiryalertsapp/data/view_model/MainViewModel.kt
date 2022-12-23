@@ -9,11 +9,14 @@ import android.realproject.warrantyexpiryalertsapp.data.db.user_info.UserEntity
 import android.realproject.warrantyexpiryalertsapp.data.db.user_info.UserImpl
 import android.realproject.warrantyexpiryalertsapp.data.navigation.Screen
 import android.realproject.warrantyexpiryalertsapp.model.CategoryItemModel
+import android.realproject.warrantyexpiryalertsapp.model.MainHintModel
+import android.realproject.warrantyexpiryalertsapp.utils.LIST_OF_HINT_MODEL
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
+import kotlin.random.Random
 
 class MainViewModel(
     private val application: Application,
@@ -50,11 +53,12 @@ class MainViewModel(
         CategoryItemModel(R.drawable.furnitureandhousehold, "Бытовая теххника", "Бытовая теххника", "\uD83D\uDECB️"),
         CategoryItemModel(R.drawable.cash, "Бизнес", "Бизнес", "\uD83D\uDCB8"),
         CategoryItemModel(R.drawable.baby, "Для детей", "Для детей", "\uD83E\uDDD2\uD83C\uDFFF"),
-        CategoryItemModel(R.drawable.motherboard, "Микроэлектроника", "Микроэлектроника", "\uD83D\uDCF1"),
-        CategoryItemModel(R.drawable.car, "Авто", "Авто", "\uD83D\uDE97 "),
-        CategoryItemModel(R.drawable.furnitureandhousehold, "Бытовая теххника", "Бытовая теххника", "\uD83D\uDECB️"),
-        CategoryItemModel(R.drawable.cash, "Бизнес", "Бизнес", "\uD83D\uDCB8"),
-        CategoryItemModel(R.drawable.baby, "Для детей", "Для детей", "\uD83E\uDDD2\uD83C\uDFFF"),
+
+        CategoryItemModel(R.drawable.funny_icon_category, "Развлечение", "Развлечение", "\uD83D\uDCF1"),
+        CategoryItemModel(R.drawable.study_icon_category, "Для учёбы", "Для учёбы", "\uD83D\uDE97 "),
+        CategoryItemModel(R.drawable.job_icon_category, "Для работы", "Для работы", "\uD83D\uDECB️"),
+        CategoryItemModel(R.drawable.innovation_icon_category, "Иновации", "Иновации", "\uD83D\uDCB8"),
+        CategoryItemModel(R.drawable.investments_icon_category, "Инвестиции", "Инвестиции", "\uD83E\uDDD2\uD83C\uDFFF"),
     )
 
     fun navigateToCategoryProduct(index: Int, needLastEl: Boolean = true){
@@ -107,5 +111,19 @@ class MainViewModel(
             else -> 1f
 
         }
+    }
+
+    var listOfMainHint = mutableListOf<MainHintModel>()
+    private fun generateListOfHint(){
+        for (i in 0 until 4){
+            val randomIndex = Random.nextInt(0, LIST_OF_HINT_MODEL.size)
+            listOfMainHint.add(LIST_OF_HINT_MODEL[randomIndex])
+        }
+
+    }
+    var openAlertChangeUserPhoto by mutableStateOf(false)
+
+    init {
+       generateListOfHint()
     }
 }
