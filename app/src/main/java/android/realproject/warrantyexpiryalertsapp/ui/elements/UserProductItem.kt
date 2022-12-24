@@ -9,7 +9,6 @@ import android.realproject.warrantyexpiryalertsapp.ui.theme.PRIMARY
 import android.realproject.warrantyexpiryalertsapp.ui.theme.SECONDARY
 import android.realproject.warrantyexpiryalertsapp.ui.theme.SHADOW_PRODUCT_ITEM
 import android.realproject.warrantyexpiryalertsapp.utils.ApplicationUiConst
-import android.realproject.warrantyexpiryalertsapp.utils.IMAGE_ARCHIVE
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*

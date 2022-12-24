@@ -84,13 +84,17 @@ fun CreateProductFragment(
         SmallApplicationHeader(
             titlePreviousFragment = "Создать",
             titleCurrentFragment = "Елемент №$generateRandomNum",
-            navController = navController,
             onCLick = { navController.navigate(Screen.SettingsScreen.route) },
             iconRes = R.drawable.ic_settings,
             modifier = Modifier.constrainAs(topBar) {
                 top.linkTo(parent.top)
                 start.linkTo(parent.start)
                 end.linkTo(parent.end)
+            },
+            onClickUndo = {
+                navController.navigate(Screen.MainScreen.route) {
+                    popUpTo(0)
+                }
             }
         )
          LazyColumn(

@@ -133,7 +133,8 @@ private fun UserInfoHeader(
         ) {
             AvatarUser(
                 viewModel = viewModel,
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxSize(),
+
             )
 
         }

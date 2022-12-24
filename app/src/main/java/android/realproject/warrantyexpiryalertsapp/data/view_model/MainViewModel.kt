@@ -54,11 +54,11 @@ class MainViewModel(
         CategoryItemModel(R.drawable.cash, "Бизнес", "Бизнес", "\uD83D\uDCB8"),
         CategoryItemModel(R.drawable.baby, "Для детей", "Для детей", "\uD83E\uDDD2\uD83C\uDFFF"),
 
-        CategoryItemModel(R.drawable.funny_icon_category, "Развлечение", "Развлечение", "\uD83D\uDCF1"),
-        CategoryItemModel(R.drawable.study_icon_category, "Для учёбы", "Для учёбы", "\uD83D\uDE97 "),
-        CategoryItemModel(R.drawable.job_icon_category, "Для работы", "Для работы", "\uD83D\uDECB️"),
-        CategoryItemModel(R.drawable.innovation_icon_category, "Иновации", "Иновации", "\uD83D\uDCB8"),
-        CategoryItemModel(R.drawable.investments_icon_category, "Инвестиции", "Инвестиции", "\uD83E\uDDD2\uD83C\uDFFF"),
+        CategoryItemModel(R.drawable.funny_icon_category, "Развлечение", "Развлечение", "\uD83C\uDF85"),
+        CategoryItemModel(R.drawable.study_icon_category, "Для учёбы", "Для учёбы", "\uD83D\uDCDA"),
+        CategoryItemModel(R.drawable.job_icon_category, "Для работы", "Для работы", "\uD83D\uDCBC"),
+        CategoryItemModel(R.drawable.innovation_icon_category, "Иновации", "Иновации", "\uD83D\uDD2C"),
+        CategoryItemModel(R.drawable.investments_icon_category, "Инвестиции", "Инвестиции", "\uD83D\uDCB8"),
     )
 
     fun navigateToCategoryProduct(index: Int, needLastEl: Boolean = true){
@@ -102,7 +102,7 @@ class MainViewModel(
 
 
     var openAlertEditDesc by mutableStateOf(false)
-
+    var openAlertChangeUserPhoto by mutableStateOf(false)
     fun setHeightAlert(text: String): Float {
         return when (text.length) {
             in 0 until 20 -> .6f
@@ -113,17 +113,4 @@ class MainViewModel(
         }
     }
 
-    var listOfMainHint = mutableListOf<MainHintModel>()
-    private fun generateListOfHint(){
-        for (i in 0 until 4){
-            val randomIndex = Random.nextInt(0, LIST_OF_HINT_MODEL.size)
-            listOfMainHint.add(LIST_OF_HINT_MODEL[randomIndex])
-        }
-
-    }
-    var openAlertChangeUserPhoto by mutableStateOf(false)
-
-    init {
-       generateListOfHint()
-    }
 }

@@ -29,44 +29,17 @@ val CURRENCY_ITEMS = listOf(
 )
 
 
-val IMAGE_ARCHIVE = listOf(
-    "https://i.pinimg.com/236x/22/6d/f2/226df2d88df0b8571244a4a289698ace.jpg",
-    "https://i.pinimg.com/236x/60/df/f4/60dff4f321506af6452c225f9bb31dba.jpg",
-    "https://i.pinimg.com/236x/c8/a8/80/c8a880cc116461f60966cc7f574b4431.jpg",
-    "https://i.pinimg.com/236x/b2/6c/7d/b26c7d5e9dc46316630ef071391a84fc.jpg",
-    "https://i.pinimg.com/236x/8d/dc/7a/8ddc7a9814744bd6c3f34c45025ff9e3.jpg",
-    "https://i.pinimg.com/236x/9b/ba/cc/9bbacc529003a8397914f5c13103e340.jpg",
-    "https://i.pinimg.com/236x/d1/32/fa/d132fae1981436d549cebf29d2b1ee98.jpg",
-    "https://i.pinimg.com/236x/8e/36/18/8e36181070c3dff668b24fddd624cf78.jpg",
-    "https://i.pinimg.com/236x/c8/a8/80/c8a880cc116461f60966cc7f574b4431.jpg",
-    "https://i.pinimg.com/236x/b2/6c/7d/b26c7d5e9dc46316630ef071391a84fc.jpg",
-    "https://i.pinimg.com/236x/8d/dc/7a/8ddc7a9814744bd6c3f34c45025ff9e3.jpg",
-    "https://i.pinimg.com/236x/9b/ba/cc/9bbacc529003a8397914f5c13103e340.jpg",
-    "https://i.pinimg.com/236x/d1/32/fa/d132fae1981436d549cebf29d2b1ee98.jpg",
-    "https://i.pinimg.com/236x/8e/36/18/8e36181070c3dff668b24fddd624cf78.jpg",
-    "https://i.pinimg.com/236x/e8/49/b8/e849b8c7d4f36244fca006d589013c09.jpg",
-    "https://i.pinimg.com/236x/2c/74/e4/2c74e491d30ee58c642ff24ad37a0726.jpg",
-    "https://i.pinimg.com/236x/2e/94/31/2e9431e9307d0715823e6a4b65998b9e.jpg",
-    "https://i.pinimg.com/236x/2c/74/e4/2c74e491d30ee58c642ff24ad37a0726.jpg",
-    "https://i.pinimg.com/236x/ae/f8/b9/aef8b9fd05fcfcbaaa1bd852196c6ce2.jpg",
-    "https://i.pinimg.com/236x/4a/2c/db/4a2cdbaa8bf25152d4d5b047fddb83b4.jpg",
-    "https://i.pinimg.com/236x/79/7a/4e/797a4e4523a1ab1190729df6bd94dc13.jpg",
-    "https://i.pinimg.com/236x/bd/a0/72/bda0720fd4be874b731cd967d813c9be.jpg",
-    "https://i.pinimg.com/236x/ec/22/48/ec2248092ecc01851b3481395564c68f.jpg",
-    "https://i.pinimg.com/236x/ea/2f/0c/ea2f0c7a70cdadaa12eb6a7ab2647906.jpg",
-    "https://i.pinimg.com/564x/e6/68/8f/e6688f4eaec9de6db74b9dd19b8b3745.jpg",
-    "https://i.pinimg.com/236x/59/1d/a6/591da6d4176c1639176245e3256289c0.jpg",
-    "https://i.pinimg.com/236x/c3/be/fc/c3befc7e936594ed41ae680367e3d097.jpg",
-    "https://i.pinimg.com/236x/3c/c6/d8/3cc6d8dc97b64df42a3108c48d6304eb.jpg"
-)
-
 
 
 const val APPLE_CATEGORY = "Apple"
 const val CAR_CATEGORY = "Автомобили"
 const val MICRO_ELECTRONICS_CATEGORY = "Микроэлектроника"
 const val FOR_CHILD_CATEGORY = "Для детей"
-
+const val HOBBIES = "Развлечения"
+const val F0R_STUDY = "Для учебы"
+const val FOR_JOB = "Для работы"
+const val INNOVATION = "Иновации"
+const val INVESTMENTS = "Инвестиции"
 
 val listOfIphoneImage = listOf(
     "https://i.pinimg.com/236x/22/6d/f2/226df2d88df0b8571244a4a289698ace.jpg",
@@ -108,11 +81,86 @@ val listOfChildCategory = listOf(
     "https://i.pinimg.com/236x/d6/10/09/d61009503f3c0b61cbcfc9979dad91ff.jpg",
 )
 
+val listOfHobbies = listOf(
+    "https://i.pinimg.com/564x/44/f9/4c/44f94c2794a491c4687e76a02fa73622.jpg",
+    "https://i.pinimg.com/236x/4d/24/b1/4d24b1806aae7df7291e8eb4250d407d.jpg",
+    "https://i.pinimg.com/236x/39/7f/e2/397fe2337fb3ce0ac3e3b74a757aea93.jpg",
+    "https://i.pinimg.com/236x/ba/93/cc/ba93cc80b84734c1946737d190c8a6ca.jpg",
+    "https://i.pinimg.com/236x/61/d5/90/61d590881a539fa7f31396f17cacfead.jpg",
+    "https://i.pinimg.com/236x/35/e3/0e/35e30e69d46883ab5f0f9a4e63325f96.jpg",
+    "https://i.pinimg.com/236x/35/e3/0e/35e30e69d46883ab5f0f9a4e63325f96.jpg",
+    "https://i.pinimg.com/236x/35/e3/0e/35e30e69d46883ab5f0f9a4e63325f96.jpg",
+    "https://i.pinimg.com/236x/35/e3/0e/35e30e69d46883ab5f0f9a4e63325f96.jpg",
+    "https://i.pinimg.com/236x/6c/cf/9a/6ccf9ae1aa55d444e0530c158729345d.jpg",
+)
+
+val listOfStudy = listOf(
+    "https://i.pinimg.com/236x/6f/9e/0c/6f9e0cd357d88b67449460337461cf1e.jpg",
+    "https://i.pinimg.com/236x/7e/b2/fb/7eb2fbaa259b7e0f6fbd878e513b56da.jpg",
+    "https://i.pinimg.com/236x/7e/b2/fb/7eb2fbaa259b7e0f6fbd878e513b56da.jpg",
+    "https://i.pinimg.com/236x/e8/0d/02/e80d023dd7d0e3de0cf5fdf8a5aaa80d.jpg",
+    "https://i.pinimg.com/236x/54/4c/e4/544ce4e3be63cdafdd64ab937b48d08b.jpg",
+    "https://i.pinimg.com/564x/0d/4a/a1/0d4aa16fe31dba498c27f3850cdf0e80.jpg",
+    "https://i.pinimg.com/236x/a3/89/c2/a389c2dcaafe6399f54ac12eac71ecf7.jpg",
+    "https://i.pinimg.com/236x/97/9c/73/979c73addd946e53fd914c6c130039e7.jpg",
+    "https://i.pinimg.com/236x/bb/01/96/bb0196962353691be30e18ce4e830c5a.jpg",
+    "https://i.pinimg.com/236x/e6/e2/19/e6e219e31ef4c0fd948d724d01a83468.jpg",
+    "https://i.pinimg.com/236x/d0/28/b8/d028b8a7fcb9daed23a718c7d759f193.jpg",
+    "https://i.pinimg.com/236x/f6/18/e0/f618e0358f53a85299f5e728efbbf186.jpg",
+)
+
+val listOfJob = listOf(
+    "https://i.pinimg.com/236x/a9/e3/38/a9e338286047594663e5349a1cf6ef6a.jpg",
+    "https://i.pinimg.com/236x/01/c2/df/01c2df96374a3011a8d6ae294d846ae1.jpg",
+    "https://i.pinimg.com/236x/54/fa/1c/54fa1ce0f21cb91c9a571855ca83d71a.jpg",
+    "https://i.pinimg.com/236x/19/a1/2d/19a12df205be9b2c405316b2b0a9eb0c.jpg",
+    "https://i.pinimg.com/236x/13/39/c5/1339c503c0189c2d3ec817b74e1d7cf2.jpg",
+    "https://i.pinimg.com/236x/64/92/d1/6492d1c6ec7654d177ea97319f400cb6.jpg",
+    "https://i.pinimg.com/564x/1a/3c/15/1a3c159d0539e928c59121d648dc4bde.jpg",
+    "https://i.pinimg.com/236x/5c/41/7a/5c417ac2eb5995321c737a091b69524e.jpg"
+)
+
+val listOfInnovation = listOf(
+    "https://i.pinimg.com/564x/03/2b/b4/032bb4387d0796e02d7e23ac92adea99.jpg",
+    "https://i.pinimg.com/236x/e6/02/cb/e602cb777300c8e23ccf53d36a960a15.jpg",
+    "https://i.pinimg.com/236x/24/c3/59/24c359d1d6b943854be53a00c782da5e.jpg",
+    "https://i.pinimg.com/236x/4d/8c/55/4d8c559a20d1bc6e505d940288261648.jpg",
+    "https://i.pinimg.com/236x/49/70/55/497055bda99a76e346b87214bfe7de51.jpg",
+    "https://i.pinimg.com/236x/03/85/06/038506c3561162544a1c89afa4554cfe.jpg",
+    "https://i.pinimg.com/236x/4a/66/e1/4a66e127b0ba97f51cfe330ce9017ce9.jpg",
+    "https://i.pinimg.com/236x/59/90/25/5990251fe79af79ca5d540dec8924d38.jpg",
+    "https://i.pinimg.com/236x/ff/c3/d6/ffc3d67fcaed428671aea9cf64bf57c7.jpg",
+    "https://i.pinimg.com/236x/bc/35/4e/bc354e906646463efa80d588c1c055f3.jpg",
+    "https://i.pinimg.com/236x/47/81/b8/4781b88fdd68c5a72aea0277587a00ae.jpg"
+)
+
+
+val listOfInvestments = listOf(
+    "https://i.pinimg.com/236x/4f/ca/94/4fca943adca89f276c59dfb4060ca1d2.jpg",
+    "https://i.pinimg.com/236x/95/03/6e/95036ed5c360034764c356dabffc5519.jpg",
+    "https://i.pinimg.com/236x/bd/15/21/bd1521122987ecf20384a4fb47dfb8c9.jpg",
+    "https://i.pinimg.com/236x/76/d6/d5/76d6d5835fd26b00b63d3170d94e85b4.jpg",
+    "https://i.pinimg.com/236x/52/28/df/5228df0eefdda91bf8619502258b0121.jpg",
+    "https://i.pinimg.com/236x/8b/66/35/8b663506902af52baf204940e972d264.jpg",
+    "https://i.pinimg.com/236x/84/8f/f6/848ff60b95a136629013739de3ff7e02.jpg",
+    "https://i.pinimg.com/236x/7d/4c/4b/7d4c4b85290d936bd638d45a1f8c9997.jpg",
+    "https://i.pinimg.com/236x/00/3f/f8/003ff83bcd14b9fdc2e76b063c27a5cf.jpg",
+    "https://i.pinimg.com/236x/93/d5/54/93d5540ced24ef9c6c252d1422f5b936.jpg",
+    "https://i.pinimg.com/236x/b6/7b/92/b67b9277ff1b535c426f145197e8692c.jpg",
+    "https://i.pinimg.com/236x/04/49/a7/0449a7589bc852a502d95273df262278.jpg"
+)
+
 val PHOTO_CATEGORY = listOf(
     PhotoCategoryModel(APPLE_CATEGORY, "https://i.pinimg.com/236x/dc/ad/84/dcad84c0a4d62b3bda8cc287e0447cae.jpg", listOfIphoneImage),
     PhotoCategoryModel(CAR_CATEGORY, "https://i.pinimg.com/236x/d7/9c/ce/d79cce468c8f74fd867553be9456d14e.jpg", listOfCarCategory),
     PhotoCategoryModel(MICRO_ELECTRONICS_CATEGORY, "https://i.pinimg.com/236x/50/28/3e/50283eb3879467e01eb43f501420bae4.jpg", listOfMicroElectronicsCategory),
     PhotoCategoryModel(FOR_CHILD_CATEGORY, "https://i.pinimg.com/236x/99/0a/ef/990aef3250364aaf474ca69ba50a4f70.jpg", listOfChildCategory),
+
+    PhotoCategoryModel(HOBBIES, "https://i.pinimg.com/236x/d4/e8/04/d4e804020b3af07a45cceb544291868f.jpg", listOfHobbies),
+    PhotoCategoryModel(F0R_STUDY, "https://i.pinimg.com/236x/f0/d2/ee/f0d2ee7605e1eb52f4960b6f91d1547f.jpg", listOfStudy),
+    PhotoCategoryModel(FOR_JOB, "https://i.pinimg.com/236x/4b/73/aa/4b73aa2d071775966b8328f1f81536f7.jpg", listOfJob ),
+    PhotoCategoryModel(INNOVATION, "https://i.pinimg.com/236x/03/2b/b4/032bb4387d0796e02d7e23ac92adea99.jpg", listOfInnovation),
+    PhotoCategoryModel(INVESTMENTS, "https://i.pinimg.com/236x/52/bb/a0/52bba0b9a1b43df1ec771e31f34f44f3.jpg", listOfInvestments),
 )
 
 
@@ -122,13 +170,18 @@ val LIST_OF_ICON_BOARDING = listOf(
 )
 
 val LIST_OF_HINT_MODEL = listOf(
-    MainHintModel(R.drawable.icon_one, "1", "qwerty ".repeat(10)),
-    MainHintModel(R.drawable.icon_two, "2", "qwerty ".repeat(6)),
-    MainHintModel(R.drawable.icon_three, "3", "qwerty ".repeat(13)),
-    MainHintModel(R.drawable.icon_two, "4", "qwerty ".repeat(4)),
-    MainHintModel(R.drawable.icon_three, "5", "qwerty ".repeat(18)),
-    MainHintModel(R.drawable.icon_one, "6", "qwerty ".repeat(7)),
-    MainHintModel(R.drawable.icon_two, "7", "qwerty ".repeat(9)),
+    MainHintModel(R.drawable.icon_one, "Веселитесь", "Найдите способ веселиться в любой ситуации: смейтесь над своими неудачами, ищите юмор в непредсказуемости жизни. "),
+    MainHintModel(R.drawable.icon_two, "Не напрягайтесь по пустякам", "Не берите все слишком серьезно: научитесь смотреть на вещи с разных ракурсов, рассматривать их с юмором. "),
+    MainHintModel(R.drawable.icon_three, "Беригите себя", "Слушайте свое тело: если вам хочется сделать перерыв, не стоит терпеть, важно ухаживать за своим здоровьем. "),
+    MainHintModel(R.drawable.icon_two, "Не стесняйтесь", "Делитесь своими успехами: радуйтесь своим достижениям и не стесняйтесь с ними поделиться с друзьями и семьей. ".repeat(4)),
+    MainHintModel(R.drawable.icon_three, "Не забывайте про себя", "Находите время для себя: не забывайте о своих увлечениях и хобби, находите время для того, чтобы расслабиться и наслажда ".repeat(18)),
+    MainHintModel(R.drawable.icon_one, "Б-бытавуха(1)", "Не оставляйте телефон на крыше автомобиля, чтобы он не упал с нее. "),
+    MainHintModel(R.drawable.icon_two, "Б-бытавуха(2)", "Не храните картофель в холодильнике, чтобы он не стал твердым. "),
+    MainHintModel(R.drawable.icon_three, "Б-бытавуха(3)", "Не пытайтесь набрать номер телефона с помощью клавиатуры компьютера, чтобы не путаться."),
+    MainHintModel(R.drawable.icon_two, "Смейтесь", "Смейтесь хотя бы раз в день: смех улучшает настроение и помогает снизить уровень стресса."),
+    MainHintModel(R.drawable.icon_three, "Разбавляйте рутину", "Постарайтесь разбавлять рутину чем-то новым: попробуйте новую диету, спортивную деятельность или хобби. "),
+    MainHintModel(R.drawable.icon_one, "Не забывай про друзей", "Общайтесь с друзьями и семьей: находите время для общения с людьми, которые вам дорожат. "),
+    MainHintModel(R.drawable.icon_two, "#Разнообразние", "Сделайте себе капучино с необычными добавками, например, с корицей или специями."),
 
 )
 

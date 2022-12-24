@@ -7,6 +7,7 @@ import android.realproject.warrantyexpiryalertsapp.ui.elements.text.SmallLightTe
 import android.realproject.warrantyexpiryalertsapp.ui.theme.BACKGROUND
 import android.realproject.warrantyexpiryalertsapp.ui.theme.SURFACE
 import android.realproject.warrantyexpiryalertsapp.utils.ApplicationUiConst
+import android.realproject.warrantyexpiryalertsapp.utils.LIST_OF_HINT_MODEL
 import androidx.compose.foundation.*
 import androidx.compose.foundation.gestures.snapping.SnapLayoutInfoProvider
 import androidx.compose.foundation.gestures.snapping.rememberSnapFlingBehavior
@@ -46,7 +47,8 @@ fun CardHintElement(
         flingBehavior = flingBehavior
     ) {
 
-        items(viewModel.listOfMainHint.size) {
+        items(LIST_OF_HINT_MODEL.size) {
+            val currentHintItem = LIST_OF_HINT_MODEL[it]
             Box(
                 modifier = Modifier
                     .height(170.dp)
@@ -74,7 +76,7 @@ fun CardHintElement(
 
                         Box(modifier = Modifier.fillMaxSize().weight(1f), contentAlignment = Alignment.BottomCenter) {
                             Image(
-                                painter = painterResource(id = viewModel.listOfMainHint[it].image),
+                                painter = painterResource(id = currentHintItem.image),
                                 contentDescription = null,
                                 modifier = Modifier.size(120.dp)
                             )
@@ -86,8 +88,8 @@ fun CardHintElement(
                                 .padding(vertical = ApplicationUiConst.Padding.VERY_LARGE),
                             horizontalAlignment = Alignment.Start,
                         ) {
-                            MediumBoldText(text = viewModel.listOfMainHint[it].title)
-                            SmallLightText(text = viewModel.listOfMainHint[it].hintText)
+                            MediumBoldText(text = currentHintItem.title)
+                            SmallLightText(text = currentHintItem.hintText)
                         }
                     }
                 }

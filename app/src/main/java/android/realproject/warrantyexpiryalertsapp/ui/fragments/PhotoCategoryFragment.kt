@@ -7,8 +7,8 @@ import android.realproject.warrantyexpiryalertsapp.ui.elements.LoadingShimmerEff
 import android.realproject.warrantyexpiryalertsapp.ui.elements.SmallApplicationHeader
 import android.realproject.warrantyexpiryalertsapp.ui.elements.text.SmallLightText
 import android.realproject.warrantyexpiryalertsapp.utils.ApplicationUiConst
-import android.realproject.warrantyexpiryalertsapp.utils.IMAGE_ARCHIVE
 import android.realproject.warrantyexpiryalertsapp.utils.PHOTO_CATEGORY
+import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -57,12 +57,17 @@ private fun PhotoCategoryItem(
     Container {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.clickable { navController.navigate("${Screen.SelectImageFromArchiveScreen.route}/${model.title}") }
+            modifier = Modifier.clickable {
+                navController.navigate("${Screen.SelectImageFromArchiveScreen.route}/${model.title}")
+                Log.e("PhotoCategoryItem", "model.title: ${model.title}", )
+            }
         ) {
             SubcomposeAsyncImage(
                 model = model.image,
                 contentDescription = null,
-                modifier = Modifier.size(ApplicationUiConst.SizeObject.IMAGE_SIZE).clip(RoundedCornerShape(ApplicationUiConst.Rounded.SMALL)),
+                modifier = Modifier
+                    .size(ApplicationUiConst.SizeObject.IMAGE_SIZE)
+                    .clip(RoundedCornerShape(ApplicationUiConst.Rounded.SMALL)),
                 contentScale = ContentScale.Crop
             ) {
                 val state = painter.state

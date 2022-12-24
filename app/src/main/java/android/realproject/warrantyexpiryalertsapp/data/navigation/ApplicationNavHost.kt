@@ -109,7 +109,7 @@ fun ApplicationNavHost(
 
             val argument = it.arguments?.getString("item", "1")
             TransitionUnderFragment {
-                AdditionallyFragment(index = argument!!.toInt())
+                AdditionallyFragment(index = argument!!.toInt(), navController)
             }
         }
 

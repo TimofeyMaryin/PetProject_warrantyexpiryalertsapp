@@ -53,7 +53,7 @@ object ApplicationUiConst {
         val HEIGHT_DESCRIPTION_ELEMENT = 150.dp
         val HEIGHT_CURRENCY_ELEMENT = 52.dp
         val SIZE_COUNTER = 32.dp
-        val HEIGHT_EDIT_TEXT = 30.dp
+        val HEIGHT_EDIT_TEXT = 50.dp
         val SIZE_ICON_BOARDING = 130.dp
         val HEIGHT_HINT_CARD = 120.dp
     }

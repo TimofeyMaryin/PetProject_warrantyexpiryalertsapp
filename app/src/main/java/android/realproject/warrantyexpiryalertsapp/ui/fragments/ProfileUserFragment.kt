@@ -17,6 +17,7 @@ import android.widget.Toast
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -89,6 +90,7 @@ fun ProfileUserFragment(
             Box(
                 modifier = Modifier
                     .clip(CircleShape)
+                    .background(BACKGROUND)
                     .border(BorderStroke(5.dp, BACKGROUND), CircleShape)
                     .clickable { viewModel.openAlertChangeUserPhoto = true }
                     .size(ApplicationUiConst.SizeObject.AVATAR_SIZE)
@@ -228,7 +230,7 @@ fun ProfileUserFragment(
             buttons = {
                 AlertChangeUserImage(navController = navController, viewModel = viewModel, aViewModel = aViewModel)
             },
-            modifier = Modifier.fillMaxHeight(.6f)
+            modifier = Modifier.clip(RoundedCornerShape(ApplicationUiConst.Rounded.BLOCK)).fillMaxHeight(.6f)
         )
     }
 

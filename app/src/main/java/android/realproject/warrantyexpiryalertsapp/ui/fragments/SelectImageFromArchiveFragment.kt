@@ -5,6 +5,7 @@ import android.media.ImageReader
 import android.realproject.warrantyexpiryalertsapp.data.navigation.Screen
 import android.realproject.warrantyexpiryalertsapp.data.view_model.CreateUserProductViewModel
 import android.realproject.warrantyexpiryalertsapp.data.view_model.MainViewModel
+import android.realproject.warrantyexpiryalertsapp.model.PhotoCategoryModel
 import android.realproject.warrantyexpiryalertsapp.ui.elements.Container
 import android.realproject.warrantyexpiryalertsapp.ui.elements.LoadingShimmerEffect
 import android.realproject.warrantyexpiryalertsapp.ui.elements.SmallApplicationHeader
@@ -62,6 +63,12 @@ fun SelectImageFromArchiveFragment(
                 CAR_CATEGORY -> PHOTO_CATEGORY[1]
                 MICRO_ELECTRONICS_CATEGORY -> PHOTO_CATEGORY[2]
                 FOR_CHILD_CATEGORY -> PHOTO_CATEGORY[3]
+                HOBBIES -> PHOTO_CATEGORY[4]
+                F0R_STUDY -> PHOTO_CATEGORY[5]
+                FOR_JOB -> PHOTO_CATEGORY[6]
+                INNOVATION -> PHOTO_CATEGORY[7]
+                INVESTMENTS -> PHOTO_CATEGORY[8]
+
                 else -> PHOTO_CATEGORY[0]
             }
         )
@@ -165,20 +172,7 @@ fun SelectImageFromArchiveFragment(
                                     .size(ApplicationUiConst.SizeObject.IMAGE_SIZE)
                                     .clip(
                                         RoundedCornerShape(ApplicationUiConst.Rounded.VERY_SMALL),
-                                    )
-                                    .clickable {
-                                        viewModel.imageModel = listOfImage.listImage[it]
-                                        //navController.popBackStack()
-
-                                        coroutineScope.launch {
-                                            if (bottomSheetScaffoldState.bottomSheetState.isCollapsed) {
-                                                bottomSheetScaffoldState.bottomSheetState.expand()
-                                            } else {
-                                                bottomSheetScaffoldState.bottomSheetState.collapse()
-                                            }
-                                        }
-
-                                    },
+                                    ),
                                 contentAlignment = Alignment.Center,
                             ) {
                                 SubcomposeAsyncImage(
@@ -191,7 +185,20 @@ fun SelectImageFromArchiveFragment(
                                     if(state is AsyncImagePainter.State.Loading || state is AsyncImagePainter.State.Error) {
                                         LoadingShimmerEffect(modifier = Modifier.size(ApplicationUiConst.SizeObject.IMAGE_SIZE))
                                     } else {
-                                        SubcomposeAsyncImageContent()
+                                        SubcomposeAsyncImageContent(
+                                            modifier = Modifier.clickable {
+                                                viewModel.imageModel = listOfImage.listImage[it]
+                                                //navController.popBackStack()
+
+                                                coroutineScope.launch {
+                                                    if (bottomSheetScaffoldState.bottomSheetState.isCollapsed) {
+                                                        bottomSheetScaffoldState.bottomSheetState.expand()
+                                                    } else {
+                                                        bottomSheetScaffoldState.bottomSheetState.collapse()
+                                                    }
+                                                }
+                                            }
+                                        )
                                     }
                                 }
                             }

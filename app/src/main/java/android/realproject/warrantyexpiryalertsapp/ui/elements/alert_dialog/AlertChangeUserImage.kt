@@ -66,7 +66,7 @@ fun AlertChangeUserImage(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Center
                 ) {
-                    SmallLightText(
+                    MediumLightText(
                         text = "Change Avatar",
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Center
@@ -85,7 +85,7 @@ fun AlertChangeUserImage(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Center
                 ) {
-                    SmallLightText(
+                    MediumLightText(
                         text = "Change Header",
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Center
@@ -109,7 +109,7 @@ fun AlertChangeUserImage(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Center
                 ) {
-                    SmallLightText(
+                    MediumLightText(
                         text = "Delete avatar",
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Center
@@ -134,7 +134,7 @@ fun AlertChangeUserImage(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Center
                 ) {
-                    SmallLightText(
+                    MediumLightText(
                         text = "Delete header",
                         modifier = Modifier
                             .fillMaxWidth(),
