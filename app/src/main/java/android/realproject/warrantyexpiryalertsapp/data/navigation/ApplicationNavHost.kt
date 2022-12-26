@@ -71,11 +71,6 @@ fun ApplicationNavHost(
             }
         }
 
-        composable(Screen.SettingsScreen.route) {
-            TransitionUnderFragment {
-                SettingsFragment()
-            }
-        }
 
         composable(Screen.ProfileUser.route) {
             TransitionUnderFragment {

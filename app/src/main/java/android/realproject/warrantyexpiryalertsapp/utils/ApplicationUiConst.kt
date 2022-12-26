@@ -42,9 +42,9 @@ object ApplicationUiConst {
 
 
     object SizeObject {
-        val AVATAR_SIZE = 150.dp
+        val AVATAR_SIZE = 80.dp
         val ICON_SIZE = 30.dp
-        val CATEGORY_ITEM = 80.dp
+        val CATEGORY_ITEM = 120.dp
         val CATEGORY_ITEM_IMAGE = 50.dp
         val HEIGHT_CARD = 130.dp
         val HEIGHT_HEADER = 80.dp

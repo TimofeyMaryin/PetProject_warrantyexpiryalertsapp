@@ -202,3 +202,35 @@ fun SmallApplicationHeader(
     }
 }
 
+
+@Composable
+fun SmallApplicationHeader(
+    titlePreviousFragment: String,
+    titleCurrentFragment: String,
+    onClickUndo: () -> Unit,
+    modifier: Modifier = Modifier,
+){
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(ApplicationUiConst.SizeObject.HEIGHT_HEADER)
+            .background(SURFACE)
+            .then(modifier),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Row(
+            modifier = Modifier.padding(start = ApplicationUiConst.Padding.BIG),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Start
+        ) {
+            MediumLightText(
+                text = "$titlePreviousFragment > ",
+                modifier = Modifier.clickable { onClickUndo() }
+            )
+            MediumLightText(text = titleCurrentFragment, color = SECONDARY)
+        }
+    }
+}
+

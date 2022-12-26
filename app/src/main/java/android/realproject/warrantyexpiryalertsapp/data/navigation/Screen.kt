@@ -17,7 +17,6 @@ sealed class Screen(val route: String){
     object MainScreen: Screen(route = "main_screen")
     object AllCategoryScreen: Screen(route = "all_category_screen")
     object CreateProductScreen: Screen(route = "create_product_screen")
-    object SettingsScreen: Screen(route = "setting_screen")
     object AdditionallyScreen: Screen(route = "additionally_screen")
 
     object CategoryProductScreen: Screen(route = "category_screen_item")

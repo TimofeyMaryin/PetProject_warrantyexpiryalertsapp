@@ -8,6 +8,7 @@ import android.realproject.warrantyexpiryalertsapp.ui.elements.text.SmallLightTe
 import android.realproject.warrantyexpiryalertsapp.ui.theme.PRIMARY
 import android.realproject.warrantyexpiryalertsapp.ui.theme.SURFACE
 import android.realproject.warrantyexpiryalertsapp.utils.ApplicationUiConst
+import android.realproject.warrantyexpiryalertsapp.utils.randomPhraseStatus
 import android.widget.Toast
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
@@ -16,7 +17,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -30,6 +31,8 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import coil.compose.AsyncImage
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import java.util.Random
+import kotlin.random.Random.Default.nextInt
 
 @Composable
 fun MainFragmentHeader(
@@ -97,16 +100,7 @@ private fun HeaderContent(
                 )
             }
 
-            IconButton(onClick = {
-                navController.navigate(Screen.SettingsScreen.route)
-            }) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_settings),
-                    contentDescription = null,
-                    tint = PRIMARY,
-                    modifier = Modifier.size(ApplicationUiConst.SizeObject.ICON_SIZE)
-                )
-            }
+
         }
     }
 }
@@ -124,19 +118,15 @@ private fun UserInfoHeader(
     ) {
         Box(
             modifier = Modifier
-                .size(ApplicationUiConst.SizeObject.AVATAR_SIZE)
-                .weight(2f)
+                .weight(1.8f)
                 .padding(end = ApplicationUiConst.Padding.NORMAL)
-                .clickable { navController.navigate(Screen.ProfileUser.route) }
-                .clip(CircleShape),
+                .clickable { navController.navigate(Screen.ProfileUser.route) },
             contentAlignment = Alignment.Center
         ) {
             AvatarUser(
                 viewModel = viewModel,
-                modifier = Modifier.fillMaxSize(),
-
+                modifier = Modifier.clip(CircleShape),
             )
-
         }
         Column(
             modifier = Modifier.weight(4f),
@@ -150,14 +140,21 @@ private fun UserInfoHeader(
                      viewModel.getUser().secondName != null
                  ) "${viewModel.getUser().secondName} ${viewModel.getUser().firstName}" else "user"
              )
+            var randomIndex by remember {
+                mutableStateOf(nextInt(0, randomPhraseStatus.size))
+            }
             SmallLightText(
-                text = "Random phrase"
+                text = randomPhraseStatus[randomIndex],
+                modifier = Modifier.clickable {
+                    randomIndex = nextInt(0 , randomPhraseStatus.size)
+                }
             )
         }
     }
 }
 
 
+@Deprecated("Чота в падлу мне дальше над ней работать")
 @Composable
 private fun GetBgDraw(
     modifier: Modifier

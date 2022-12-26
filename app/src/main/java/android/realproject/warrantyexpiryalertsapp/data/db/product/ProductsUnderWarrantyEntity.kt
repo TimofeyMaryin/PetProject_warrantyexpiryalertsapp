@@ -14,11 +14,14 @@ import java.util.Currency
  * ProductsUnderWarrantyEntity()
  *
  * - productName - название товара
- * - imagesProduct - картинка для карточки товара(Any потому что есть вариант в архиве выбрать фото(там ссылочка будет) или же с устройства
- * - endOfWarranty - конец гарантии( те придеться конвертировать Date type в String)
+ * - imageSrc - картинка для карточки товара(Any потому что есть вариант в архиве выбрать фото(там ссылочка будет) или же с устройства
+ * -  endOfWarranty - конец гарантии( те придеться конвертировать Date type в String)
  * - category - ну категория товара, что не понятно то?
  * - addiction - дополнительная информация, которая понадобиться юзеру
  * - dateOfPurchaseOfTheProduct - дата покупки товара
+ * - guaranteePeriod - срок гарантии(сколько месяцев идет гаранти)
+ * - productPrice - цена товара
+ * - currency - категория
  */
 
 
@@ -27,13 +30,14 @@ import java.util.Currency
 data class ProductsUnderWarrantyEntity(
     @PrimaryKey(autoGenerate = true) var id: Long = 0,
     @ColumnInfo val productName: String,
-    @ColumnInfo val imageSrc: String,
+    @ColumnInfo val imageSrc: String?,
     @ColumnInfo val guaranteePeriod: String,
     @ColumnInfo val category: String,
     @ColumnInfo var addiction: String? = null,
     @ColumnInfo val dateOfPurchaseOfTheProduct: String,
     @ColumnInfo val productPrice: String,
-    @ColumnInfo val currency: String
+    @ColumnInfo val currency: String,
+    @ColumnInfo val endOfWarranty: String,
 ): Parcelable
 
 

@@ -47,7 +47,7 @@ fun MainFragment(
                     .background(BACKGROUND)
             ) {
 
-                val (header, cardHint, categoryElement, addictionInfoElement, userProduct) = createRefs()
+                val (header, cardHint) = createRefs()
 
                 MainFragmentHeader(
                     modifier = Modifier.constrainAs(header) {
@@ -73,7 +73,7 @@ fun MainFragment(
         item {
             LazyVerticalGrid(
                 columns = GridCells.Fixed(3),
-                modifier = Modifier.height(270.dp)
+                modifier = Modifier.height(350.dp)
             ) {
                 items(viewModel.categoryItemMainFragment.size){
                     val isLastEl = viewModel.categoryItemMainFragment.size == it+1

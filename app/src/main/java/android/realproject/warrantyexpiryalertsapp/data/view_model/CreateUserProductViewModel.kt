@@ -13,6 +13,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import java.time.LocalDate
+import java.time.Period
 import java.time.format.DateTimeFormatter
 import java.util.Calendar
 
@@ -43,15 +44,25 @@ class CreateUserProductViewModel(
         }
     }
 
-
-    // TODO("РЕАЛИЗОВАТЬ И НЕ ЗАБЫТЬ!!")
-    fun validateCurrentEnterData() {
-        val currentDate = LocalDate.now()
+    fun setDateEndOfWarranty(): String{
         val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+        val _dateOfBuyProduct = LocalDate.parse(dateOfBuyProduct, formatter)
+        val period = Period.of(0, guaranteePeriod.toInt(), 0)
+        val dateWithPeriod = _dateOfBuyProduct.plus(period)
 
+        val monthValue = if(dateWithPeriod.month.toString().length < 2) "0${dateWithPeriod.monthValue}" else dateWithPeriod.monthValue
+        val dayValue = if(dateWithPeriod.dayOfMonth.toString().length < 2) "0${dateWithPeriod.dayOfMonth}" else dateWithPeriod.dayOfMonth
 
+        return "${dayValue}/${monthValue}/${dateWithPeriod.year}"
+    }
 
-        val userEnterDate = LocalDate.parse(dateOfBuyProduct)
+    fun validateCurrentEnterData(
+        year: Int, month: Int, dayOfMonth: Int
+    ): Boolean {
+        val dateOfUser = LocalDate.of(year, month, dayOfMonth)
+        val currentDate = LocalDate.now()
+
+        return dateOfUser <= currentDate
     }
 
     suspend fun createCard() {
@@ -61,10 +72,11 @@ class CreateUserProductViewModel(
                 guaranteePeriod = guaranteePeriod,
                 addiction = description,
                 dateOfPurchaseOfTheProduct = dateOfBuyProduct,
-                imageSrc = imageModel!!,
+                imageSrc = imageModel,
                 productName = productName,
                 productPrice = productPrice,
-                currency = currency
+                currency = currency,
+                endOfWarranty = setDateEndOfWarranty()
             )
         )
     }
@@ -76,6 +88,7 @@ class CreateUserProductViewModel(
         guaranteePeriod = ""
         productPrice = ""
         imageModel = ""
+        description = ""
     }
 
 }

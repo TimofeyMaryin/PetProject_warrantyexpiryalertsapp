@@ -63,8 +63,6 @@ fun FilterByCategoryFragment(
             titlePreviousFragment = "Категория",
             titleCurrentFragment = category,
             navController = navController,
-            onCLick = { navController.navigate(Screen.SettingsScreen.route) },
-            iconRes = R.drawable.ic_settings,
             modifier = Modifier.constrainAs(header) {
                 top.linkTo(parent.top)
             }

@@ -33,8 +33,6 @@ fun AllCategoryFragment(
         SmallApplicationHeader(
             titlePreviousFragment = "Категория",
             titleCurrentFragment = "Все",
-            onCLickShare = { Toast.makeText(context, "Share button", Toast.LENGTH_SHORT).show() },
-            onCLickSetting = { navController.navigate(Screen.SettingsScreen.route) },
             navController = navController
         )
 

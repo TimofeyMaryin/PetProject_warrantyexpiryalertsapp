@@ -79,10 +79,7 @@ fun DetailsProductFragment(
             item {
                 DetailsItem(
                     titleCategory = "Дата окончания гарантии",
-                    content = viewModel.checkTimeOutWarranty(
-                        product.dateOfPurchaseOfTheProduct,
-                        product.guaranteePeriod
-                    ),
+                    content = product.endOfWarranty,
                     weighForTitle = 2f,
                     weightForLine = .8f,
                     weightForContent = 1f
@@ -117,6 +114,7 @@ fun DetailsProductFragment(
                     weightForContent =2f
                 )
             }
+
             item {
                 SmallLightText(text = "Дополнительная информация", color = PRIMARY_70)
             }

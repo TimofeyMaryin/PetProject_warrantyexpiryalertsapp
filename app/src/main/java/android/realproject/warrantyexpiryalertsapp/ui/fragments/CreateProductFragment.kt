@@ -46,6 +46,7 @@ import kotlin.random.Random
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 import java.util.Date
 
 @Composable
@@ -72,7 +73,15 @@ fun CreateProductFragment(
     val datePicker = DatePickerDialog(
         context,
         { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
-            viewModel.dateOfBuyProduct = "$dayOfMonth/$month/$year"
+
+            Log.e("CreateProductFragment", "year: $year", )
+            Log.e("CreateProductFragment", "month: $month", )
+            Log.e("CreateProductFragment", "dayOfMonth: $dayOfMonth", )
+            Log.e("CreateProductFragment", "currentDate: ${LocalDate.now()}", )
+
+            if(viewModel.validateCurrentEnterData(year, month+1, dayOfMonth)) {
+                viewModel.dateOfBuyProduct = "$dayOfMonth/${month+1}/$year"
+            }
         }, year, month, dayOfMonth
     )
 
@@ -84,8 +93,6 @@ fun CreateProductFragment(
         SmallApplicationHeader(
             titlePreviousFragment = "Создать",
             titleCurrentFragment = "Елемент №$generateRandomNum",
-            onCLick = { navController.navigate(Screen.SettingsScreen.route) },
-            iconRes = R.drawable.ic_settings,
             modifier = Modifier.constrainAs(topBar) {
                 top.linkTo(parent.top)
                 start.linkTo(parent.start)
@@ -128,7 +135,7 @@ fun CreateProductFragment(
                          value = viewModel.guaranteePeriod,
                          placeHolder = "Укажите срок гарантии(в мес)",
                          onValueChange = {
-                             if (it.isDigitsOnly()) {
+                             if (it.isDigitsOnly() && it.length <= 3) {
                                  viewModel.changeValue(INDEX_PRODUCT_GUARANTEE, it)
                              }
                          },
@@ -147,6 +154,7 @@ fun CreateProductFragment(
                      )
                      CreateElementTextField(
                          onClickAction = {
+
                              datePicker.show()
                          },
                      )

@@ -185,3 +185,24 @@ val LIST_OF_HINT_MODEL = listOf(
 
 )
 
+val randomPhraseStatus = listOf(
+    "В детстве время тянется, а потом — бац! И тебе уже пятьдесят.",
+    "Мой брат научил меня не обращать внимания на все, что говорят до слова «но».",
+    "Настоящие друзья никогда не осуждают друг друга. Они осуждают других людей. Вместе.",
+    "Прошу послать меня на курсы повышения зарплаты Читайте больше: https://www.nur.kz/leisure/books/1841723-smesnye-frazy-i-prikolnye-vyrazenia-so-smyslom/",
+    "Смогла ли я поселиться в твоем сердце? Да ты вломилась в него, не снимая обуви",
+    "Что бы ты хотела от жизни? Домик у моря с видом на настоящего мужчину.",
+    "Если твое счастье зависит от того, как поступают другие, то, пожалуй, у тебя действительно есть проблемы.",
+    "¿Dónde puedo encontrar el marido para mi tortuga? Hace 300 años necesita casarse con alguien.",
+    " Por favor, llámame la princesa de hadas (el compañero mariscal de campo) .",
+    "En otros tiempos mi padre trabajó para el kgb y él me mostré la pareja de llaves.",
+    "¿Qué propina? Ya dejó un kilo del sebo en la recepción.",
+    " Cuídese Usted a mi fantasma doméstico.",
+    "¿Y vosotros, los extraterrestres, siempre están tan amables?",
+    "¿Que cabrón robó mi leche de chocolate?",
+    "The average woman would rather have beauty than brains, because the average man can see better than he can think.",
+    "One of the great things about books is sometimes there are some fantastic pictures.",
+    "Always remember: you’re unique, just like everyone else.",
+    "The road to success is always under construction."
+)
+
