@@ -7,6 +7,7 @@ import android.realproject.warrantyexpiryalertsapp.login_boarding.AcquaintanceWi
 import android.realproject.warrantyexpiryalertsapp.login_boarding.AcquaintanceWithApplicationFragment
 import android.realproject.warrantyexpiryalertsapp.login_boarding.AcquaintanceWithApplicationViewModel
 import android.realproject.warrantyexpiryalertsapp.login_boarding.UserPictureFragment
+import android.realproject.warrantyexpiryalertsapp.splashscreen.AnimatedSplashScreen
 import android.realproject.warrantyexpiryalertsapp.ui.elements.animation.TransitionUnderFragment
 import android.realproject.warrantyexpiryalertsapp.ui.fragments.*
 import android.realproject.warrantyexpiryalertsapp.utils.APPLE_CATEGORY
@@ -27,21 +28,7 @@ fun ApplicationNavHost(
     acquaintanceWithApplicationViewModel: AcquaintanceWithApplicationViewModel
 ) {
 
-    val currentRoute by remember {
-        mutableStateOf(
-            if(mainViewModel.getUser() != null) {
-                if(mainViewModel.getUser().firstName != null) {
-                    Screen.MainScreen.route
-                } else {
-                    Screen.OnBoarding.route
-                }
-            } else {
-                Screen.OnBoarding.route
-            }
-
-        )
-    }
-    NavHost(navController = navController, startDestination = currentRoute){
+    NavHost(navController = navController, startDestination = Screen.SplashScreen.route){
         composable(Screen.OnBoarding.route){
             AcquaintanceWithApplication(viewModel = acquaintanceWithApplicationViewModel, mainViewModel = mainViewModel, navController = navController)
         }
@@ -140,9 +127,9 @@ fun ApplicationNavHost(
             val currentTitleFragment by remember {
                 mutableStateOf(
                     if(isAvatar != "0") {
-                        "Avatar"
+                        "Аватарки"
                     } else {
-                        "Header"
+                        "Шапочки"
                     }
                 )
             }
@@ -154,6 +141,12 @@ fun ApplicationNavHost(
                     titleCurrentFragment = currentTitleFragment,
                     mainViewModel = mainViewModel
                 )
+            }
+        }
+
+        composable(Screen.SplashScreen.route){
+            TransitionUnderFragment {
+                AnimatedSplashScreen(navController = navController, mainViewModel = mainViewModel)
             }
         }
 

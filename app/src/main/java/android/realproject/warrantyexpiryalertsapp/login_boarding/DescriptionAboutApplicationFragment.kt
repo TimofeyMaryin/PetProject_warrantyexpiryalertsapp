@@ -27,7 +27,7 @@ fun DescriptionAboutApplicationFragment(
 
 
         ContainWithLottie(
-            title = "Now you can study use application",
+            title = "Прямо сейчас ты можешь видеть, что это приложение умеет",
             resAnim = R.raw.anim_icon_two,
             modifier = Modifier.constrainAs(contain) {
                 top.linkTo(parent.top)

@@ -44,73 +44,24 @@ fun FillUserDataFragment(
     modifier: Modifier,
     navController: NavController,
 ) {
-    val coroutineScope = rememberCoroutineScope()
 
     ConstraintLayout(
         modifier = modifier
     ) {
-        val (title, fillDataPole, buttonCreate) = createRefs()
+        val (fillDataPole) = createRefs()
 
-        ContainWithLottie(
-            title = "Lets start fill your person data",
-            resAnim = R.raw.anim_icon,
-            modifier = Modifier.constrainAs(title){
-                top.linkTo(parent.top, margin = ApplicationUiConst.Padding.BIG)
-                start.linkTo(parent.start)
-                end.linkTo(parent.end)
-                bottom.linkTo(fillDataPole.top)
-            }.fillMaxHeight(.4f)
-        )
         FillUserData(
             viewModel = aViewModel,
             modifier = Modifier.constrainAs(fillDataPole) {
-                top.linkTo(title.bottom)
+                top.linkTo(parent.top)
                 bottom.linkTo(parent.bottom)
                 start.linkTo(parent.start)
                 end.linkTo(parent.end)
             }.fillMaxHeight(),
             navController = navController,
+            mainViewModel = viewModel
         )
-        if(
-            aViewModel.avatarUri.isNotEmpty() &&
-            aViewModel.firstName.isNotEmpty() &&
-            aViewModel.secondName.isNotEmpty() &&
-            aViewModel.headerUri.isNotEmpty()
-        ) {
-            Button(
-                onClick = {
-                    coroutineScope.launch {
-                        viewModel.insertUser(
-                            user = UserEntity(
-                                firstName = aViewModel.firstName,
-                                secondName = aViewModel.secondName,
-                                dateRegister = aViewModel.dateOfRegister(),
-                                avatar = aViewModel.avatarUri,
-                                headerImage = aViewModel.headerUri
-                            )
-                        )
-                        viewModel.navController.navigate(Screen.MainScreen.route) {
-                            popUpTo(Screen.OnBoarding.route) {
-                                inclusive = true
-                            }
-                        }
-                    }
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .defaultMinSize(minHeight = 40.dp)
-                    .clip(RoundedCornerShape(0))
-                    .constrainAs(buttonCreate) {
-                        bottom.linkTo(parent.bottom)
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                        top.linkTo(parent.top)
-                    }
-            ) {
-                MediumBoldText(text = "Create Account")
-            }
 
-        }
 
 
 
@@ -120,6 +71,7 @@ fun FillUserDataFragment(
 @Composable
 private fun FillUserData(
     viewModel: AcquaintanceWithApplicationViewModel,
+    mainViewModel: MainViewModel,
     modifier: Modifier,
     navController: NavController,
 ) {
@@ -137,7 +89,7 @@ private fun FillUserData(
                     modifier =Modifier.fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
-                    MediumBoldText(text = "First step: Add avatar")
+                    MediumBoldText(text = "Давай добавим аватарку")
                     Box(
                         modifier = Modifier
                             .clip(CircleShape)
@@ -170,7 +122,7 @@ private fun FillUserData(
                     modifier =Modifier.fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
-                    MediumBoldText(text = "Next step: Add header image")
+                    MediumBoldText(text = "Теперь давай установим тебе шапку профиля")
                     Box(
                         modifier = Modifier
                             .clip(RoundedCornerShape(ApplicationUiConst.Rounded.SMALL))
@@ -202,13 +154,52 @@ private fun FillUserData(
 
         item {
             Container {
-                FillDataTextField(value =  viewModel.firstName, onChangeValue = { viewModel.firstName = it }, placeHolder = "Enter your first name")
+                FillDataTextField(value =  viewModel.firstName, onChangeValue = { viewModel.firstName = it }, placeHolder = "Введи свое имя")
             }
         }
         item {
             Container {
-                FillDataTextField(value = viewModel.secondName, onChangeValue = { viewModel.secondName = it }, placeHolder = "Enter your second name")
+                FillDataTextField(value = viewModel.secondName, onChangeValue = { viewModel.secondName = it }, placeHolder = "Введи свою фамилию")
             }
+        }
+
+        item {
+            val coroutineScope = rememberCoroutineScope()
+            if(
+                viewModel.avatarUri.isNotEmpty() &&
+                viewModel.firstName.isNotEmpty() &&
+                viewModel.secondName.isNotEmpty() &&
+                viewModel.headerUri.isNotEmpty()
+            ) {
+                Button(
+                    onClick = {
+                        coroutineScope.launch {
+                            mainViewModel.insertUser(
+                                user = UserEntity(
+                                    firstName = viewModel.firstName,
+                                    secondName = viewModel.secondName,
+                                    dateRegister = viewModel.dateOfRegister(),
+                                    avatar = viewModel.avatarUri,
+                                    headerImage = viewModel.headerUri
+                                )
+                            )
+                            mainViewModel.navController.navigate(Screen.MainScreen.route) {
+                                popUpTo(Screen.OnBoarding.route) {
+                                    inclusive = true
+                                }
+                            }
+                        }
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .defaultMinSize(minHeight = 40.dp)
+                        .clip(RoundedCornerShape(0))
+                ) {
+                    MediumBoldText(text = "Создать аккаунт")
+                }
+
+            }
+
         }
 
     }

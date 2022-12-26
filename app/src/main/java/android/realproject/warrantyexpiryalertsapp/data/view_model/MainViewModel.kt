@@ -16,6 +16,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.Formatter
 import kotlin.random.Random
 
 class MainViewModel(
@@ -111,6 +114,17 @@ class MainViewModel(
             else -> 1f
 
         }
+    }
+
+    fun formattedDate(): String{
+        var res = ""
+        for (i in 0 until 10){
+            res += getUser().dateRegister?.get(i).toString()
+        }
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val dateRegister = LocalDate.parse(res, formatter)
+
+        return "${dateRegister.dayOfMonth}/${dateRegister.monthValue}/${dateRegister.year}"
     }
 
 }

@@ -47,7 +47,7 @@ fun AcquaintanceWithApplicationFragment(
                     end.linkTo(parent.end)
                     bottom.linkTo(parent.bottom, margin = ApplicationUiConst.Padding.VERY_LARGE)
                 }.fillMaxHeight(.4f),
-                title = "Welcome to my person Application",
+                title = "Добро пожаловать Effect Drill",
                 resAnim = R.raw.anim_icon_three,
             )
 

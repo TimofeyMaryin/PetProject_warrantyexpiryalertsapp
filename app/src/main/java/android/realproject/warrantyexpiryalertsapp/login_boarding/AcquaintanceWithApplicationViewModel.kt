@@ -20,10 +20,10 @@ class AcquaintanceWithApplicationViewModel: ViewModel() {
     var headerUri by mutableStateOf("")
 
     val hintList = listOf(
-        HintModel("Create model", R.raw.anim_one),
-        HintModel("Delete model", R.raw.anim_two),
-        HintModel("Edit model", R.raw.anim_three),
-        HintModel("Show your profile", R.raw.anim_one),
+        HintModel("Создавать", R.raw.anim_one),
+        HintModel("Удалять", R.raw.anim_two),
+        HintModel("Редактировать", R.raw.anim_three),
+        HintModel("Можно сделать свой профиль", R.raw.anim_one),
     )
 
     val avatarImages = listOf(

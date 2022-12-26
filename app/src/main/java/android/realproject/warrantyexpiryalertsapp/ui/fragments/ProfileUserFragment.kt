@@ -49,7 +49,7 @@ fun ProfileUserFragment(
     ) {
         val (
             cardImage, avatar,
-            personData, exitButton,
+            personData,
             textFields, bottomBar
         ) = createRefs()
 
@@ -93,7 +93,7 @@ fun ProfileUserFragment(
                     .background(BACKGROUND)
                     .border(BorderStroke(5.dp, BACKGROUND), CircleShape)
                     .clickable { viewModel.openAlertChangeUserPhoto = true }
-                    .size(ApplicationUiConst.SizeObject.AVATAR_SIZE)
+                    .size(ApplicationUiConst.SizeObject.LARGE_AVATAR_SIZE)
                     .constrainAs(avatar) {
                         top.linkTo(cardImage.bottom, margin = (-65).dp)
                         start.linkTo(parent.start)
@@ -101,7 +101,7 @@ fun ProfileUserFragment(
                     },
                 contentAlignment = Alignment.Center,
             ) {
-                if(viewModel.getUser().avatar != null || viewModel.getUser().avatar != ""){
+                if(viewModel.getUser().avatar != null){
                     AsyncImage(
                         model = viewModel.getUser().avatar,
                         contentDescription = null,
@@ -253,7 +253,7 @@ private fun PrivateUserData(modifier: Modifier, viewModel: MainViewModel) {
             )
             SmallLightText(
                 text = if(viewModel.getUser().dateRegister != null)
-                    "Дата регистрации ${viewModel.getUser().dateRegister}" else "Дата регистрации ???"
+                    "Дата регистрации ${viewModel.formattedDate()}" else "Дата регистрации ???"
             )
         } else {
             MediumLightText(

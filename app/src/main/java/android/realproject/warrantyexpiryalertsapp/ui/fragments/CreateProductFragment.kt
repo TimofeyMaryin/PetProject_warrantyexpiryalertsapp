@@ -271,7 +271,8 @@ fun CreateProductFragment(
                      viewModel.guaranteePeriod != ""&&
                      viewModel.dateOfBuyProduct != "" &&
                      viewModel.category != "" &&
-                     viewModel.productName != ""
+                     viewModel.productName != "" &&
+                     viewModel.productPrice != ""
                  ) {
                      Container {
                          Button(

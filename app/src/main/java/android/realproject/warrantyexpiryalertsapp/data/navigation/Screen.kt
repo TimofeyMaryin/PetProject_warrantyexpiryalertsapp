@@ -29,4 +29,6 @@ sealed class Screen(val route: String){
 
     object OnBoarding: Screen(route = "onboarding_screen")
     object SelectUserPhoto: Screen(route = "select_image_user")
+
+    object SplashScreen: Screen(route = "splash_screen")
 }

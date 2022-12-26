@@ -31,7 +31,7 @@ fun AlertChangeUserImage(
     ) {
         val (title, content) = createRefs()
 
-        MediumBoldText(text = "Lets change avatar", modifier =Modifier.constrainAs(title) {
+        MediumBoldText(text = "Давай изменим твой видОк", modifier =Modifier.constrainAs(title) {
             top.linkTo(parent.top, margin = ApplicationUiConst.Padding.LARGE)
             start.linkTo(parent.start)
             end.linkTo(parent.end)
@@ -60,14 +60,14 @@ fun AlertChangeUserImage(
                         .clickable {
                             navController.navigate("${Screen.SelectUserPhoto.route}/1")
                             viewModel.openAlertChangeUserPhoto = false
-                            Log.e("AlertChangeUserImage", "avatarUri: ${viewModel.getUser().avatar}", )
+
 
                         },
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Center
                 ) {
                     MediumLightText(
-                        text = "Change Avatar",
+                        text = "Изменить аватарку",
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Center
                     )
@@ -80,13 +80,12 @@ fun AlertChangeUserImage(
                             viewModel.openAlertChangeUserPhoto = false
                             navController.navigate("${Screen.SelectUserPhoto.route}/0")
                             viewModel.openAlertChangeUserPhoto = false
-                            Log.e("AlertChangeUserImage", "headerImage: ${viewModel.getUser().headerImage}", )
                         },
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Center
                 ) {
                     MediumLightText(
-                        text = "Change Header",
+                        text = "Изменить шапОчку",
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Center
                     )
@@ -104,13 +103,16 @@ fun AlertChangeUserImage(
                                             avatar = null
                                         )
                                 )
+                                viewModel.openAlertChangeUserPhoto = false
                             }
+
+
                         },
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Center
                 ) {
                     MediumLightText(
-                        text = "Delete avatar",
+                        text = "Удалить аватарку",
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Center
                     )
@@ -135,7 +137,7 @@ fun AlertChangeUserImage(
                     horizontalArrangement = Arrangement.Center
                 ) {
                     MediumLightText(
-                        text = "Delete header",
+                        text = "Удалить шапочку",
                         modifier = Modifier
                             .fillMaxWidth(),
                         textAlign = TextAlign.Center
